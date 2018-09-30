@@ -1,30 +1,33 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" >
-          Dropdown
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item">Action</a>
-          <a class="dropdown-item">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">Disabled</a>
-      </li>
-    </ul>
-  </div>
+<nav class="navbar navbar-expand-md navbar-light bg-white">
+  <ul class="navbar-nav mx-auto text-center">
+    <li class="nav-item mx-1" ngbDropdown>
+      <a class="nav-link" id="nav-dropdown-1" ngbDropdownToggle>
+        O PROJEKCIE
+      </a>
+      <div ngbDropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/about']">Historia i cel</a>
+      </div>
+    </li>
+    <li class="nav-item mx-1">
+      <a class="nav-link" [routerLink]="['/news']">AKTUALNOŚCI</a>
+    </li>
+    <li class="nav-item mx-1">
+      <a class="nav-link" [routerLink]="['/gallery']">GALERIA</a>
+    </li>
+    <li class="nav-item mx-1">
+      <a class="nav-link" [routerLink]="['/team']">O NAS</a>
+    </li>
+    <li class="nav-item mx-1" ngbDropdown>
+      <a class="nav-link" id="nav-dropdown-2" ngbDropdownToggle>
+        ZAINSPIRUJ!
+      </a>
+      <div ngbDropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/visitors']">Odwiedzili nas</a>
+        <a class="dropdown-item" [routerLink]="['/skirtchat']">#skirtchat</a>
+      </div>
+    </li>
+    <li class="nav-item mx-1">
+      <a class="nav-link" [routerLink]="['/contact']">KONTAKT</a>
+    </li>
+  </ul>
 </nav>
