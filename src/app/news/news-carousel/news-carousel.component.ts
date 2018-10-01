@@ -8,12 +8,12 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NewsCarouselComponent implements OnInit {
   images = [
-    '../../../assets/slider1.jpg',
-    '../../../assets/slider2.jpg',
-    '../../../assets/slider3.jpg',
-    '../../../assets/slider4.jpg',
-    '../../../assets/slider5.jpg',
-    '../../../assets/slider6.jpg',
+    '../../../assets/carousel/slider1.jpg',
+    '../../../assets/carousel/slider2.jpg',
+    '../../../assets/carousel/slider3.jpg',
+    '../../../assets/carousel/slider4.jpg',
+    '../../../assets/carousel/slider5.jpg',
+    '../../../assets/carousel/slider6.jpg',
   ];
 
   constructor(config: NgbCarouselConfig) {
