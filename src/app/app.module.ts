@@ -15,7 +15,6 @@ import { VisitorsComponent } from './visitors/visitors.component';
 import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
 import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
-import { NewsLastEntryComponent } from './news/news-last-entry/news-last-entry.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { NewsLastEntryComponent } from './news/news-last-entry/news-last-entry.c
     SkirtchatComponent,
     ContactComponent,
     NewsCarouselComponent,
-    NewsLastEntryComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

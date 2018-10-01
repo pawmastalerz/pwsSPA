@@ -1,68 +1,24 @@
+.container-fluid {
+  height: 80vw;
+  .header-c {
+    height: 80vw;
+    img {
+        height: 100%;
+        padding: 25px 0;
+    }
+  }
+}
 
+@media only screen and (min-width: 576px) {
+    .container-fluid {
+        height: 450px;
+        .header-c {
+          height: 450px;
+          img {
+              height: 100%;
+              padding: 25px;
+          }
+        }
+      }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// .container-fluid {
-//     background: url("../../assets//headerBackground.png");
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     height: 450px;
-//     background-position: bottom;
-//   }
-
-// .container-fluid {
-
-//   .hdr-l {
-//     background: url("../../assets/headerBackgroundLeft.jpg");
-//     background-position-x: left;
-//     background-position-y: top;
-//     height: 450px;
-//     background-size: 30vw;
-//     background-repeat: no-repeat;
-//   }
-
-//   .hdr-c {
-//     background: url("../../assets/headerBackgroundCenter.jpg");
-//     background-position: center;
-//     height: 450px;
-//     background-size: 30vw;
-//     background-repeat: no-repeat;
-//   }
-
-//   .hdr-r {
-//     background: url("../../assets/headerBackgroundRight.jpg");
-//     background-position-x: right;
-//     background-position-y: bottom;
-//     height: 450px;
-//     background-size: 25vw;
-//     background-repeat: no-repeat;
-//   }
-
-// }
