@@ -1,4 +1,3 @@
-import { PosterService } from './../services/poster.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,12 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor(
-    private posterService: PosterService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.posterService.getPosters();
   }
 
 }

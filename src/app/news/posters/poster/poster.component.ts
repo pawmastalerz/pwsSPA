@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Poster } from '../../../../Models/poster';
 
 @Component({
   selector: 'app-poster',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./poster.component.scss']
 })
 export class PosterComponent implements OnInit {
+  @Input()
+  posterDetails: Poster;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    console.log('Wczytuję plakat w poster component...');
+    console.log(this.posterDetails.posterPhotoUrl);
   }
-
 }
