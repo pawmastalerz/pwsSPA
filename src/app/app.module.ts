@@ -15,6 +15,8 @@ import { VisitorsComponent } from './visitors/visitors.component';
 import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
 import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
+import { PostersComponent } from './news/posters/posters.component';
+import { PosterComponent } from './news/posters/poster/poster.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NewsCarouselComponent } from './news/news-carousel/news-carousel.compon
     SkirtchatComponent,
     ContactComponent,
     NewsCarouselComponent,
+    PostersComponent,
+    PosterComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

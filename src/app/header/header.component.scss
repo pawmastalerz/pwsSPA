@@ -1,24 +1,19 @@
-.container-fluid {
-  height: 80vw;
+.row {
+  height: 450px;
+  .header-l {
+    background-image: url("../../assets/header/headerL.png");
+    background-repeat: no-repeat;
+  }
   .header-c {
-    height: 80vw;
-    img {
-        height: 100%;
-        padding: 25px 0;
-    }
+    background-image: url("../../assets/header/headerC.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 55%;
+  }
+  .header-r {
+    background-image: url("../../assets/header/headerR.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
   }
 }
-
-@media only screen and (min-width: 576px) {
-    .container-fluid {
-        height: 450px;
-        .header-c {
-          height: 450px;
-          img {
-              height: 100%;
-              padding: 25px;
-          }
-        }
-      }
-}
-
