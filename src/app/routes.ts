@@ -6,6 +6,7 @@ import { AboutComponent } from './about/about.component';
 import { TeamComponent } from './team/team.component';
 import { VisitorsComponent } from './visitors/visitors.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -15,5 +16,6 @@ export const appRoutes: Routes = [
   { path: 'visitors', component: VisitorsComponent },
   { path: 'skirtchat', component: SkirtchatComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '/news', pathMatch: 'full' }
 ];
