@@ -20,6 +20,7 @@ import { PostersComponent } from './news/posters/posters.component';
 import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PostersComponent,
     PosterComponent,
     LoginComponent,
+    AdminComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

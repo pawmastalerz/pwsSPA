@@ -13,7 +13,5 @@ export class PosterComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log('Wczytuję plakat w poster component...');
-    console.log(this.posterDetails.posterPhotoUrl);
   }
 }

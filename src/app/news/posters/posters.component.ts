@@ -19,8 +19,6 @@ export class PostersComponent implements OnInit {
   loadPosters() {
     this.posterService.getPosters().subscribe( (posters: Poster[]) => {
         this.posters = posters;
-        console.log('Wczytuję plakaty w posters component...');
-        console.log(this.posters);
       },
       error => {
         console.log(error);

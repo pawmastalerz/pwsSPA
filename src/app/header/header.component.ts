@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,12 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  headerL = '../../assets/header/headerL.png';
-  headerC = '../../assets/header/headerC.png';
-  headerR = '../../assets/header/headerR.png';
 
-  headerTemp = '../../assets/header/headerBackground.png';
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
