@@ -19,6 +19,7 @@ import { NewsCarouselComponent } from './news/news-carousel/news-carousel.compon
 import { PostersComponent } from './news/posters/posters.component';
 import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
