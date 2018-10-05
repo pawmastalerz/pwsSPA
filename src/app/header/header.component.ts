@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isAuth = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.isAuth = this.authService.isAuthenticated();
   }
 }

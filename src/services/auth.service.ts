@@ -1,7 +1,7 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
-import { User } from '../Models/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -12,14 +12,16 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username: string, password: string) {
     return this.http
-      .post<User>(this.baseUrl + 'users/login', { username, password })
-      .subscribe(res => {
+      .post(this.baseUrl + 'users/login', { username, password })
+      .subscribe((res: any) => {
+        console.log(res);
         localStorage.setItem('accessToken', res.token);
         this.decodedToken = this.jwtHelper.decodeToken(res.token);
+        this.router.navigateByUrl('/admin');
       });
   }
 
