@@ -26,6 +26,5 @@ export class LoginComponent implements OnInit {
       this.loginForm.value.username,
       this.loginForm.value.password
     );
-    this.authService.editIsAuth(true);
   }
 }

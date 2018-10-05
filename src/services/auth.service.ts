@@ -30,13 +30,18 @@ export class AuthService {
         console.log(res);
         localStorage.setItem('accessToken', res.token);
         this.decodedToken = this.jwtHelper.decodeToken(res.token);
-        this.router.navigateByUrl('/admin');
+        if (this.isAuthenticated) {
+          this.isAuth.next(true);
+          this.router.navigateByUrl('/admin');
+        } else {
+          console.log('nieprawidłowe hasło');
+        }
       });
   }
 
   logout() {
     localStorage.removeItem('accessToken');
-    this.router.navigateByUrl('/news');
+    this.router.navigateByUrl('/login');
   }
 
   getDecodedToken() {
@@ -44,6 +49,10 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !this.jwtHelper.isTokenExpired(localStorage.getItem('accessToken'));
+    if (!this.jwtHelper.isTokenExpired(localStorage.getItem('accessToken'))) {
+      this.isAuth.next(true);
+      return true;
+    }
+    return false;
   }
 }
