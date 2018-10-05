@@ -19,4 +19,9 @@ export class AdminComponent implements OnInit {
     this.authService.editIsAuth(false);
   }
 
+  canDeactivate() {
+    console.log('Allowing cancellation...');
+    return true;
+  }
+
 }

@@ -1,4 +1,5 @@
-import { AuthGuardService } from './../services/auth-guard.service';
+import { ActivateAuthGuardService } from '../services/activate-auth-guard.service';
+import { DeactivateAuthGuardService } from '../services/deactivate-auth-guard.service';
 import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { Routes } from '@angular/router';
 import { NewsComponent } from './news/news.component';
@@ -22,7 +23,8 @@ export const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [ActivateAuthGuardService],
+    canDeactivate: [DeactivateAuthGuardService]
   },
   { path: '**', redirectTo: '/news', pathMatch: 'full' }
 ];
