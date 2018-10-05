@@ -18,14 +18,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    this.authService
-      .login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe((res) => {
-        console.log('User is logged in. Server response');
-        console.log(res);
-        // this.router.navigateByUrl('/');
-      });
-    // TODO: Use EventEmitter with form value
-    console.log(this.loginForm.value);
+    this.authService.login(
+      this.loginForm.value.username,
+      this.loginForm.value.password
+    );
   }
 }
