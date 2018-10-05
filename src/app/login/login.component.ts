@@ -8,6 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  isAuth: boolean;
+
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.castIsAuth.subscribe(isAuth => (this.isAuth = isAuth));
   }
 
   onSubmit() {
@@ -23,5 +26,6 @@ export class LoginComponent implements OnInit {
       this.loginForm.value.username,
       this.loginForm.value.password
     );
+    this.authService.editIsAuth(true);
   }
 }

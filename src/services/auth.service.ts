@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -8,11 +9,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
+  private isAuth = new BehaviorSubject<boolean>(false);
+  castIsAuth = this.isAuth.asObservable();
+
   baseUrl = environment.apiUrl;
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  editIsAuth(isAuth: boolean) {
+    this.isAuth.next(isAuth);
+    console.log('Obecna wartosc isAuth: ' + this.isAuth.value);
+  }
 
   login(username: string, password: string) {
     return this.http
@@ -27,6 +36,11 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('accessToken');
+    this.router.navigateByUrl('/news');
+  }
+
+  getDecodedToken() {
+    return this.decodedToken();
   }
 
   public isAuthenticated(): boolean {
