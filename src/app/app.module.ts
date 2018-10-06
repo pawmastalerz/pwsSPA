@@ -1,5 +1,5 @@
 import { AdminModule } from './admin/admin.module';
-import { NbThemeModule } from '@nebular/theme';
+import { NbThemeModule, NbMenuModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -48,6 +48,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     AdminModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbMenuModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

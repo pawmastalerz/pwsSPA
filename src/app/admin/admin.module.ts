@@ -5,13 +5,16 @@ import {
   NbSidebarModule,
   NbLayoutModule,
   NbButtonModule,
-  NbSidebarService
+  NbCardModule,
+  NbSidebarService,
+  NbMenuModule
 } from '@nebular/theme';
 
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
+import { PostersComponent } from './posters/posters.component';
 
 @NgModule({
   imports: [
@@ -19,9 +22,11 @@ import { ContentComponent } from './content/content.component';
     RouterModule,
     NbLayoutModule,
     NbSidebarModule,
-    NbButtonModule
+    NbButtonModule,
+    NbCardModule,
+    NbMenuModule
   ],
-  declarations: [AdminComponent, HeaderComponent, SidebarComponent, ContentComponent],
+  declarations: [AdminComponent, HeaderComponent, SidebarComponent, ContentComponent, PostersComponent],
   providers: [NbSidebarService],
   exports: [AdminComponent]
 })

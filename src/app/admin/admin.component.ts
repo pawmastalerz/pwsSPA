@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,14 +8,9 @@ import { AuthService } from '../../services/auth.service';
 export class AdminComponent implements OnInit {
   isAuth: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  logout() {
-    this.authService.logout();
-    this.authService.editIsAuth(false);
   }
 
   canDeactivate() {
