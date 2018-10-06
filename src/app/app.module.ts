@@ -2,11 +2,9 @@ import { AdminModule } from './admin/admin.module';
 import { NbThemeModule, NbMenuModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +20,7 @@ import { NewsCarouselComponent } from './news/news-carousel/news-carousel.compon
 import { PostersComponent } from './news/posters/posters.component';
 import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,7 @@ import { LoginComponent } from './login/login.component';
     LoginComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     BrowserModule,
     NgbModule,
     HttpClientModule,
