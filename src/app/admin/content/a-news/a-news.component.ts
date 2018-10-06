@@ -4,11 +4,11 @@ import { PosterService } from '../../../../services/poster.service';
 import { Poster } from '../../../../Models/Poster';
 
 @Component({
-  selector: 'app-posters',
-  templateUrl: './posters.component.html',
-  styleUrls: ['./posters.component.scss']
+  selector: 'app-a-news',
+  templateUrl: './a-news.component.html',
+  styleUrls: ['./a-news.component.scss']
 })
-export class PostersComponent implements OnInit {
+export class ANewsComponent implements OnInit {
   postersList: Poster[];
 
   constructor(
@@ -31,5 +31,4 @@ export class PostersComponent implements OnInit {
         });
     }
   }
-
 }

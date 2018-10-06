@@ -15,9 +15,8 @@ import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
-import { PostersComponent } from './content/posters/posters.component';
-import { PostsComponent } from './content/posts/posts.component';
 import { HomeComponent } from './content/home/home.component';
+import { ANewsComponent } from './content/a-news/a-news.component';
 
 @NgModule({
   imports: [
@@ -35,9 +34,8 @@ import { HomeComponent } from './content/home/home.component';
     HeaderComponent,
     SidebarComponent,
     ContentComponent,
-    PostersComponent,
-    PostsComponent,
-    HomeComponent
+    HomeComponent,
+    ANewsComponent
   ],
   providers: [NbSidebarService],
   exports: [AdminComponent]

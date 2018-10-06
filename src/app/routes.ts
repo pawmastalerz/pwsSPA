@@ -12,9 +12,8 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 
 import { AdminComponent } from './admin/admin.component';
-import { PostersComponent } from './admin/content/posters/posters.component';
-import { PostsComponent } from './admin/content/posts/posts.component';
 import { HomeComponent } from './admin/content/home/home.component';
+import { ANewsComponent } from './admin/content/a-news/a-news.component';
 
 export const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -36,12 +35,8 @@ export const appRoutes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'posters',
-        component: PostersComponent
-      },
-      {
-        path: 'posts',
-        component: PostsComponent
+        path: 'news',
+        component: ANewsComponent
       },
       {
         path: '**',

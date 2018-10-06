@@ -1,5 +1,5 @@
 <nb-tabset>
-  <nb-tab tabTitle="Lista plakatów">
+  <nb-tab tabTitle="Plakaty">
     <div class="mt-3">
       <nb-card *ngFor="let poster of postersList">
         <nb-card-body>
@@ -9,7 +9,7 @@
                 {{poster.description}}
               </div>
               <div class="col-12 col-lg-4">
-                {{poster.happensAt}}
+                {{poster.happensAt | date :'dd-MM-yy HH:mm' }}
               </div>
               <div class="col-12 col-lg-4">
                 Przyciski
@@ -20,7 +20,7 @@
       </nb-card>
     </div>
   </nb-tab>
-  <nb-tab tabTitle="Nowy plakat">
+  <!-- <nb-tab tabTitle="Nowy plakat">
     Tab content 2
-  </nb-tab>
+  </nb-tab> -->
 </nb-tabset>

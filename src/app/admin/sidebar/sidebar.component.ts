@@ -13,12 +13,8 @@ export class SidebarComponent implements OnInit {
       link: '/admin/home'
     },
     {
-      title: 'Plakaty',
-      link: '/admin/posters'
-    },
-    {
-      title: 'Posty',
-      link: '/admin/posts'
+      title: 'Aktualności',
+      link: '/admin/news'
     }
   ];
 
