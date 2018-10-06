@@ -1,4 +1,5 @@
 import { AdminModule } from './admin/admin.module';
+import { NbThemeModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -45,7 +46,8 @@ import { LoginComponent } from './login/login.component';
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

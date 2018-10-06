@@ -1,1 +1,20 @@
-<button type="button" class="btn btn-primary" (click)="logout()">Wyloguj</button>
+<nb-layout>
+    <nb-layout-header fixed>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6 text-middle">
+                    <p>
+                        Projekt w spódnicy
+                    </p>
+                </div>
+                <div class="col-6">
+                    <button nbButton (click)="logout()" class="float-right">Wyloguj</button>
+                </div>
+            </div>
+        </div>
+    </nb-layout-header>
+
+    <nb-sidebar>Sidebar Content</nb-sidebar>
+
+    <nb-layout-column>Page Content</nb-layout-column>
+</nb-layout>
