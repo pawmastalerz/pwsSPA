@@ -12,7 +12,7 @@ export class PosterService {
 
   constructor(private http: HttpClient) {}
 
-  getPosters(): Observable<Poster[]> {
+  getNewsPosters(): Observable<Poster[]> {
     return this.http.get<Poster[]>(this.baseUrl + 'posters');
   }
 }

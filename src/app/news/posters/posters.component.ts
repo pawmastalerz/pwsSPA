@@ -17,11 +17,8 @@ export class PostersComponent implements OnInit {
   }
 
   loadPosters() {
-    this.posterService.getPosters().subscribe( (posters: Poster[]) => {
+    this.posterService.getNewsPosters().subscribe( (posters: Poster[]) => {
         this.posters = posters;
-      },
-      error => {
-        console.log(error);
       }
     );
   }
