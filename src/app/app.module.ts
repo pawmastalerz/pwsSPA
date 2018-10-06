@@ -3,7 +3,7 @@ import { NbThemeModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { PostersComponent } from './news/posters/posters.component';
 import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TokenInterceptor } from '../interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,13 @@ import { AppRoutingModule } from './app-routing.module';
     NbMenuModule.forRoot(),
     NbSidebarModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

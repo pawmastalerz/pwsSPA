@@ -1,9 +1,6 @@
-import { Poster } from './../Models/Poster';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -16,5 +13,9 @@ export class PosterService {
 
   getNewsPosters() {
     return this.http.get(this.baseUrl + 'posters', {observe: 'response'});
+  }
+
+  getAllPosters() {
+    return this.http.get(this.baseUrl + 'posters/all', {observe: 'response'});
   }
 }

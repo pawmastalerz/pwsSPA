@@ -48,11 +48,16 @@ export class AuthService {
     return this.decodedToken();
   }
 
+  getToken() {
+    return localStorage.getItem('accessToken');
+  }
+
   public isAuthenticated(): boolean {
     if (!this.jwtHelper.isTokenExpired(localStorage.getItem('accessToken'))) {
       this.isAuth.next(true);
       return true;
     }
+    this.logout();
     return false;
   }
 }

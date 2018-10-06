@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PosterService } from '../../../services/poster.service';
-import { Poster } from '../../../Models/Poster';
-import { HttpResponse } from '@angular/common/http';
+import { Poster } from '../../../models/Poster';
 
 @Component({
   selector: 'app-posters',
