@@ -9,7 +9,7 @@ import { NbMenuItem } from '@nebular/theme';
 export class SidebarComponent implements OnInit {
   items: NbMenuItem[] = [
     {
-      title: 'Strona główna',
+      title: 'Panel administracyjny',
       link: '/admin/home'
     },
     {

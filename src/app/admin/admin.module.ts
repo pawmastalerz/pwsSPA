@@ -17,6 +17,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
 import { ANewsComponent } from './content/a-news/a-news.component';
+import { APostersComponent } from './content/a-news/a-posters/a-posters.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { ANewsComponent } from './content/a-news/a-news.component';
     SidebarComponent,
     ContentComponent,
     HomeComponent,
-    ANewsComponent
+    ANewsComponent,
+    APostersComponent,
   ],
   providers: [NbSidebarService],
   exports: [AdminComponent]
