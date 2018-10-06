@@ -7,18 +7,29 @@
   <p class="text-center my-4">
     Lista plakatów w bazie:
   </p>
-  <nb-card *ngFor="let poster of postersList">
+  <nb-card *ngFor="let poster of postersList" class="existingPoster">
     <nb-card-body>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12 col-lg-4">
-            {{poster.description}}
+          <div class="col-12 col-sm-4">
+            <img src="{{poster.posterPhotoUrl}}" class="mx-auto d-block" alt="">
           </div>
-          <div class="col-12 col-lg-4">
-            {{poster.happensAt | date :'dd-MM-yy HH:mm' }}
-          </div>
-          <div class="col-12 col-lg-4">
-            Przyciski
+          <div class="col-12 col-sm-8">
+            <table class="mx-auto my-2">
+              <tr>
+                <td>Opis:</td>
+                <td>{{poster.description}}</td>
+              </tr>
+              <tr>
+                <td>Data:</td>
+                <td>{{poster.happensAt | date :'dd-MM-yy HH:mm' }}</td>
+              </tr>
+              <tr>
+                <td>Przyciski</td>
+                <td></td>
+              </tr>
+            </table>
+              <br>
           </div>
         </div>
       </div>

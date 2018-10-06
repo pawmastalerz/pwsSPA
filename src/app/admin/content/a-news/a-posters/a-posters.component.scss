@@ -1,3 +1,17 @@
 .newPoster {
     height: 200px;
 }
+
+.existingPoster {
+    height: 200px;
+}
+
+img {
+    height: 100px;
+}
+
+@media only screen and (min-width: 576px) {
+    .existingPoster {
+        height: 140px;
+    }
+}
