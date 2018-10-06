@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class PosterService {
 
   constructor(private http: HttpClient) {}
 
-  getNewsPosters(): Observable<Poster[]> {
-    return this.http.get<Poster[]>(this.baseUrl + 'posters');
+  getNewsPosters() {
+    return this.http.get(this.baseUrl + 'posters', {observe: 'response'});
   }
 }

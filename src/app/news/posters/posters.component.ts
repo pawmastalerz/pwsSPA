@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PosterService } from '../../../services/poster.service';
 import { Poster } from '../../../Models/Poster';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-posters',
@@ -17,9 +18,11 @@ export class PostersComponent implements OnInit {
   }
 
   loadPosters() {
-    this.posterService.getNewsPosters().subscribe( (posters: Poster[]) => {
-        this.posters = posters;
-      }
-    );
+    this.posterService.getNewsPosters().subscribe((res: any) => {
+      this.posters = res.body;
+      // console.log(+res.status);
+    }, error => {
+      console.log(error);
+    });
   }
 }
