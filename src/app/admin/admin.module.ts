@@ -7,7 +7,8 @@ import {
   NbButtonModule,
   NbCardModule,
   NbSidebarService,
-  NbMenuModule
+  NbMenuModule,
+  NbTabsetModule
 } from '@nebular/theme';
 
 import { AdminComponent } from './admin.component';
@@ -26,7 +27,8 @@ import { HomeComponent } from './content/home/home.component';
     NbSidebarModule,
     NbButtonModule,
     NbCardModule,
-    NbMenuModule
+    NbMenuModule,
+    NbTabsetModule
   ],
   declarations: [
     AdminComponent,
@@ -35,7 +37,8 @@ import { HomeComponent } from './content/home/home.component';
     ContentComponent,
     PostersComponent,
     PostsComponent,
-    HomeComponent],
+    HomeComponent
+  ],
   providers: [NbSidebarService],
   exports: [AdminComponent]
 })

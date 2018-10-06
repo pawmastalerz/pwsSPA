@@ -1,5 +1,5 @@
 import { AdminModule } from './admin/admin.module';
-import { NbThemeModule, NbMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -48,6 +48,7 @@ import { AppRoutingModule } from './app-routing.module';
     AdminModule,
     NbThemeModule.forRoot({ name: 'cosmic' }),
     NbMenuModule.forRoot(),
+    NbSidebarModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
