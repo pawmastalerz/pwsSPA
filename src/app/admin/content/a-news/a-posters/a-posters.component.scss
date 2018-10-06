@@ -1,17 +1,26 @@
 .newPoster {
-    height: 200px;
+  height: 200px;
 }
-
 .existingPoster {
-    height: 200px;
-}
-
-img {
+  height: 250px;
+  img {
     height: 100px;
+  }
+  .trash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  i {
+    font-size: 5em;
+  }
+  i:hover {
+    color: red;
+  }
 }
 
 @media only screen and (min-width: 576px) {
-    .existingPoster {
-        height: 140px;
-    }
+  .existingPoster {
+    height: 140px;
+  }
 }

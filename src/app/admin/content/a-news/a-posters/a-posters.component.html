@@ -4,32 +4,26 @@
       Wstaw nowy plakat
     </nb-card-body>
   </nb-card>
-  <p class="text-center my-4">
+  <h5 class="text-center my-4">
     Lista plakatów w bazie:
-  </p>
+  </h5>
   <nb-card *ngFor="let poster of postersList" class="existingPoster">
     <nb-card-body>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12 col-sm-4">
+          <div class="col-6 col-sm-3 order-1">
             <img src="{{poster.posterPhotoUrl}}" class="mx-auto d-block" alt="">
           </div>
-          <div class="col-12 col-sm-8">
-            <table class="mx-auto my-2">
-              <tr>
-                <td>Opis:</td>
-                <td>{{poster.description}}</td>
-              </tr>
-              <tr>
-                <td>Data:</td>
-                <td>{{poster.happensAt | date :'dd-MM-yy HH:mm' }}</td>
-              </tr>
-              <tr>
-                <td>Przyciski</td>
-                <td></td>
-              </tr>
-            </table>
-              <br>
+          <div class="col-4 col-sm-1 mt-3 mt-sm-0 order-3">
+            <p>Opis:</p> <br>
+            <p>Data:</p> <br>
+          </div>
+          <div class="col-8 col-sm-4 mt-3 mt-sm-0 order-4">
+              <p>{{poster.description}}</p> <br>
+              <p>{{poster.happensAt | date :'dd-MM-yy HH:mm' }}</p> <br>
+          </div>
+          <div class="col-6 col-sm-4 trash order-2 order-sm-5">
+              <i class="fa fa-trash"></i>
           </div>
         </div>
       </div>
