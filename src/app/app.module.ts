@@ -1,15 +1,17 @@
+import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { appRoutes } from './routes';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NewsComponent } from './news/news.component';
 import { GalleryComponent } from './gallery/gallery.component';
-import { appRoutes } from './routes';
 import { AboutComponent } from './about/about.component';
 import { TeamComponent } from './team/team.component';
 import { VisitorsComponent } from './visitors/visitors.component';
@@ -19,8 +21,6 @@ import { NewsCarouselComponent } from './news/news-carousel/news-carousel.compon
 import { PostersComponent } from './news/posters/posters.component';
 import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -37,15 +37,15 @@ import { AdminComponent } from './admin/admin.component';
     NewsCarouselComponent,
     PostersComponent,
     PosterComponent,
-    LoginComponent,
-    AdminComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
