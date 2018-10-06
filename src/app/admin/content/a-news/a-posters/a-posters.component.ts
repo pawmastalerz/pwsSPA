@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { PosterService } from '../../../../../services/poster.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-a-posters',
@@ -14,7 +15,12 @@ export class APostersComponent implements OnInit {
         title: 'Opis'
       },
       happensAt: {
-        title: 'Data'
+        title: 'Data',
+        valuePrepareFunction: value => {
+          const formatted = moment(value).format('DD-MM-YYYY HH:mm');
+
+          return formatted;
+        }
       },
       posterPhotoUrl: {
         title: 'Zdjęcie'
@@ -26,7 +32,7 @@ export class APostersComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private posterService: PosterService,
+    private posterService: PosterService
   ) {}
 
   ngOnInit() {
