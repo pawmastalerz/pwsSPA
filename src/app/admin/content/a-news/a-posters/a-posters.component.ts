@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Poster } from '../../../../../Models/Poster';
 import { AuthService } from '../../../../../services/auth.service';
 import { PosterService } from '../../../../../services/poster.service';
 
@@ -9,12 +8,26 @@ import { PosterService } from '../../../../../services/poster.service';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
-  postersList: Poster[];
+  settings = {
+    columns: {
+      description: {
+        title: 'Opis'
+      },
+      happensAt: {
+        title: 'Data'
+      },
+      posterPhotoUrl: {
+        title: 'Zdjęcie'
+      }
+    }
+  };
+
+  data: any;
 
   constructor(
     private authService: AuthService,
-    private posterService: PosterService
-  ) { }
+    private posterService: PosterService,
+  ) {}
 
   ngOnInit() {
     this.loadPosters();
@@ -22,13 +35,16 @@ export class APostersComponent implements OnInit {
 
   loadPosters() {
     if (this.authService.isAuthenticated) {
-      this.posterService.getAllPosters().subscribe((res: any) => {
-          this.postersList = res.body;
-          console.log(this.postersList);
+      this.posterService.getAllPosters().subscribe(
+        (res: any) => {
+          this.data = res.body;
+          console.log(this.data);
           // console.log(+res.status);
-        }, error => {
+        },
+        error => {
           console.log(error);
-        });
+        }
+      );
     }
   }
 }

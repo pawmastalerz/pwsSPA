@@ -10,6 +10,7 @@ import {
   NbMenuModule,
   NbTabsetModule
 } from '@nebular/theme';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './header/header.component';
@@ -28,7 +29,8 @@ import { APostersComponent } from './content/a-news/a-posters/a-posters.componen
     NbButtonModule,
     NbCardModule,
     NbMenuModule,
-    NbTabsetModule
+    NbTabsetModule,
+    Ng2SmartTableModule
   ],
   declarations: [
     AdminComponent,
