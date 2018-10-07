@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +11,14 @@ export class PosterService {
   constructor(private http: HttpClient) {}
 
   getNewsPosters() {
-    return this.http.get(this.baseUrl + 'posters', {observe: 'response'});
+    return this.http.get(this.baseUrl + 'posters/news', {
+      observe: 'response'
+    });
   }
 
   getAllPosters() {
-    return this.http.get(this.baseUrl + 'posters/all', {observe: 'response'});
+    return this.http.get(this.baseUrl + 'posters/all', {
+      observe: 'response'
+    });
   }
 }
