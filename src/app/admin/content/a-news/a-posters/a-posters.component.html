@@ -1,5 +1,6 @@
 <div class="mt-3">
-  <input #file type="file" multiple (change)="upload(file.files)" />
+  <input class="btn btn-secondary" #file type="file" (change)="pick(file.files)"/>
+  <button class="btn btn-primary" (click)="upload()">Wyślij</button>
   <br />
   <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
 </div>
