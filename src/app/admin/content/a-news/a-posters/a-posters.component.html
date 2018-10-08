@@ -1,3 +1,5 @@
 <div class="mt-3">
+  <input #file type="file" multiple (change)="upload(file.files)" />
+  <br />
   <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
 </div>

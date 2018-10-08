@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { PosterService } from '../../../../../services/poster.service';
 import * as moment from 'moment';
+import { HttpClient, HttpRequest, HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-a-posters',
@@ -9,6 +10,8 @@ import * as moment from 'moment';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
+  public progress: number;
+  public message: string;
   settings = {
     columns: {
       description: {
@@ -32,7 +35,8 @@ export class APostersComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private posterService: PosterService
+    private posterService: PosterService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -53,4 +57,20 @@ export class APostersComponent implements OnInit {
       );
     }
   }
+
+  upload(files) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const formData = new FormData();
+
+    for (const file of files) {
+      formData.append(file.name, file);
+    }
+
+    const uploadReq = new HttpRequest('POST', `http://localhost:5000/api/posters/upload`, formData);
+
+    this.http.request(uploadReq).subscribe();
+}
 }
