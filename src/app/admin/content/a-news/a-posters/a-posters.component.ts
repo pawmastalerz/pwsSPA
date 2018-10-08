@@ -9,7 +9,6 @@ import * as moment from 'moment';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
-  posterToSend: any;
 
   settings = {
     columns: {
@@ -56,28 +55,4 @@ export class APostersComponent implements OnInit {
     }
   }
 
-  pick(files) {
-    if (files.length !== 1) {
-      return;
-    }
-
-    const formData = new FormData();
-
-    for (const file of files) {
-      formData.append(file.name, file);
-    }
-
-    this.posterToSend = formData;
-  }
-
-  upload() {
-    this.posterService.uploadPoster(this.posterToSend).subscribe(
-      (res: any) => {
-        console.log(+res.status);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
 }

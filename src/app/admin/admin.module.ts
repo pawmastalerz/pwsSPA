@@ -20,6 +20,7 @@ import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
 import { ANewsComponent } from './content/a-news/a-news.component';
 import { APostersComponent } from './content/a-news/a-posters/a-posters.component';
+import { APostersPhotoEditComponent } from './content/a-news/a-posters/a-posters-photo-edit/a-posters-photo-edit.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { APostersComponent } from './content/a-news/a-posters/a-posters.componen
     HomeComponent,
     ANewsComponent,
     APostersComponent,
+    APostersPhotoEditComponent,
   ],
   providers: [NbSidebarService],
   exports: [AdminComponent]
