@@ -73,7 +73,7 @@ export class APostersComponent implements OnInit {
   upload() {
     this.posterService.uploadPoster(this.posterToSend).subscribe(
       (res: any) => {
-        // console.log(+res.status);
+        console.log(+res.status);
       },
       error => {
         console.log(error);
