@@ -8,8 +8,7 @@ import {
   NbCardModule,
   NbSidebarService,
   NbMenuModule,
-  NbTabsetModule,
-  NbInputModule
+  NbTabsetModule
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
@@ -32,7 +31,6 @@ import { APostersPhotoEditComponent } from './content/a-news/a-posters/a-posters
     NbCardModule,
     NbMenuModule,
     NbTabsetModule,
-    NbInputModule,
     Ng2SmartTableModule
   ],
   declarations: [

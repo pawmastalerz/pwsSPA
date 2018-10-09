@@ -55,4 +55,31 @@ export class APostersComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
+=======
+  pick(files) {
+    if (files.length !== 1) {
+      return;
+    }
+
+    const formData = new FormData();
+
+    for (const file of files) {
+      formData.append(file.name, file);
+    }
+
+    this.posterToSend = formData;
+  }
+
+  upload() {
+    this.posterService.uploadPoster(this.posterToSend).subscribe(
+      (res: any) => {
+        // console.log(+res.status);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+>>>>>>> parent of 7f141ec... File input looks slightly better.
 }
