@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { PosterService } from '../../../../../services/poster.service';
 import * as moment from 'moment';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-a-posters',
@@ -9,6 +10,11 @@ import * as moment from 'moment';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
+
+  posterForm = new FormGroup({
+    description: new FormControl('', Validators.required),
+    happensAt: new FormControl('', Validators.required)
+  });
 
   posterToSend: any;
 
@@ -51,6 +57,16 @@ export class APostersComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+  }
+
+  onSubmit() {
+    console.log('Tworzę nowy plakat...');
+  }
+
+  keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.onSubmit();
     }
   }
 
