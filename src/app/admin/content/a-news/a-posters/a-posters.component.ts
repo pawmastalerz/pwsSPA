@@ -10,6 +10,8 @@ import * as moment from 'moment';
 })
 export class APostersComponent implements OnInit {
 
+  posterToSend: any;
+
   settings = {
     columns: {
       description: {
@@ -22,9 +24,6 @@ export class APostersComponent implements OnInit {
 
           return formatted;
         }
-      },
-      posterPhotoUrl: {
-        title: 'Zdjęcie'
       }
     }
   };
@@ -55,8 +54,6 @@ export class APostersComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
-=======
   pick(files) {
     if (files.length !== 1) {
       return;
@@ -74,12 +71,11 @@ export class APostersComponent implements OnInit {
   upload() {
     this.posterService.uploadPoster(this.posterToSend).subscribe(
       (res: any) => {
-        // console.log(+res.status);
+        console.log(+res.status);
       },
       error => {
         console.log(error);
       }
     );
   }
->>>>>>> parent of 7f141ec... File input looks slightly better.
 }

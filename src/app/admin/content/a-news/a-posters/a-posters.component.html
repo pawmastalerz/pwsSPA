@@ -1,15 +1,26 @@
 <div class="mt-3">
-<<<<<<< HEAD
 
   <!-- <input #file type="file" (change)="pick(file.files)" />
   <button class="btn btn-primary" (click)="upload()">Wyślij</button> -->
 
-  <app-a-posters-photo-edit></app-a-posters-photo-edit>
+  <nb-card>
+    <nb-card-header>
+      Dodaj nowy plakat:
+    </nb-card-header>
+    <nb-card-body>
 
-=======
-  <input class="btn btn-secondary" #file type="file" (change)="pick(file.files)"/>
-  <button class="btn btn-primary" (click)="upload()">Wyślij</button>
-  <br />
->>>>>>> parent of 7f141ec... File input looks slightly better.
+      <div class="input-group my-4">
+        <div class="custom-file">
+          <input nbInput #file type="file" class="custom-file-input" id="inputGroupFile04" (change)="pick(file.files)"
+            aria-describedby="inputGroupFileAddon04">
+          <label class="custom-file-label" for="inputGroupFile04">Wybierz plik...</label>
+        </div>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="upload()">Wyślij</button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
   <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
 </div>
