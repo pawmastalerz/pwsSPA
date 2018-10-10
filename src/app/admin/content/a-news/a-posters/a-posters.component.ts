@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../../../../services/auth.service';
 import { PosterService } from '../../../../../services/poster.service';
 import * as moment from 'moment';
@@ -10,13 +10,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
-
   posterForm = new FormGroup({
     description: new FormControl('', Validators.required),
-    happensAt: new FormControl('', Validators.required)
+    happensAt: new FormControl('', Validators.required),
+    file: new FormControl('', Validators.required)
   });
-
-  posterToSend: any;
 
   settings = {
     columns: {
@@ -38,7 +36,8 @@ export class APostersComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private posterService: PosterService
+    private posterService: PosterService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -60,32 +59,26 @@ export class APostersComponent implements OnInit {
     }
   }
 
+  onFileChange(event) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+
+      reader.onload = () => {
+        this.posterForm.patchValue({
+          file: reader.result
+        });
+
+        // need to run CD since file load runs outside of zone
+        this.cd.markForCheck();
+        console.log(this.posterForm.value);
+      };
+    }
+  }
+
   onSubmit() {
     console.log('Tworzę nowy plakat...');
-  }
-
-  pick(files) {
-    if (files.length !== 1) {
-      return;
-    }
-
-    const formData = new FormData();
-
-    for (const file of files) {
-      formData.append(file.name, file);
-    }
-
-    this.posterToSend = formData;
-  }
-
-  upload() {
-    this.posterService.uploadPoster(this.posterToSend).subscribe(
-      (res: any) => {
-        console.log(+res.status);
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 }
