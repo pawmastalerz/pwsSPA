@@ -19,7 +19,7 @@
               </label>
               <br>
               <input type="file" formControlName="file" (change)="onFileChange($event)" />
-              <button type="submit" class="btn btn-primary" [disabled]="posterForm.invalid || posterForm.prestine">Dodaj nowy plakat</button>
+              <button type="submit" class="btn btn-primary" [disabled]="posterForm.invalid || posterForm.pristine">Dodaj nowy plakat</button>
             </form>
           </div>
         </div>
