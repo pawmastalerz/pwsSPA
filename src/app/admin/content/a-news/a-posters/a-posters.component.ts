@@ -64,12 +64,6 @@ export class APostersComponent implements OnInit {
     console.log('Tworzę nowy plakat...');
   }
 
-  keyDownFunction(event) {
-    if (event.keyCode === 13) {
-      this.onSubmit();
-    }
-  }
-
   pick(files) {
     if (files.length !== 1) {
       return;
