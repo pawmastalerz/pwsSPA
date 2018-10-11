@@ -6,21 +6,27 @@
     <nb-card-body>
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-12 col-sm-6">
             <form [formGroup]="posterForm" class="mx-auto d-block">
-              <label class="mt-2 mt-sm-3">
-                <p>Opis:</p>
-                <input type="text" formControlName="description" class="form-control">
-              </label>
+              <p class="mt-2 mt-sm-3">Opis:</p>
+              <input type="text" formControlName="description" class="form-control">
               <br>
-              <label>
-                <p>Data wydarzenia:</p>
-                <input type="text" formControlName="happensAt" class="form-control">
-              </label>
+              <p>Data wydarzenia:</p>
+              <input type="text" formControlName="happensAt" class="form-control">
               <br>
               <input type="file" formControlName="file" (change)="onFileChange($event)" />
-              <button type="submit" class="btn btn-primary" [disabled]="posterForm.invalid || posterForm.pristine">Dodaj nowy plakat</button>
             </form>
+          </div>
+          <div class="col-12 col-sm-6">
+            <p>Podgląd</p>
+            <div class="preview">
+              
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary mt-2 mt-sm-3" [disabled]="posterForm.invalid || posterForm.pristine">
+              Dodaj nowy plakat
+            </button>
           </div>
         </div>
       </div>
