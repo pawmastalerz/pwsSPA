@@ -18,7 +18,6 @@ import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
 import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
 import { PostersComponent } from './news/posters/posters.component';
-import { PosterComponent } from './news/posters/poster/poster.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
@@ -37,7 +36,6 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     ContactComponent,
     NewsCarouselComponent,
     PostersComponent,
-    PosterComponent,
     LoginComponent
   ],
   imports: [
