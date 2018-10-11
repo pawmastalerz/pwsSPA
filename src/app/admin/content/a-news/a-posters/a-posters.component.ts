@@ -12,8 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class APostersComponent implements OnInit {
   posterForm = new FormGroup({
     description: new FormControl('', Validators.required),
-    happensAt: new FormControl('', Validators.required),
-    file: new FormControl('', Validators.required)
+    happensAt: new FormControl('', Validators.required)
   });
 
   settings = {
@@ -56,25 +55,6 @@ export class APostersComponent implements OnInit {
           console.log(error);
         }
       );
-    }
-  }
-
-  onFileChange(event) {
-    const reader = new FileReader();
-
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-
-      reader.onload = () => {
-        this.posterForm.patchValue({
-          file: reader.result
-        });
-
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-        console.log(this.posterForm.value);
-      };
     }
   }
 
