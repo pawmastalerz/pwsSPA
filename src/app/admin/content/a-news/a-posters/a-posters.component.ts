@@ -11,9 +11,14 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class APostersComponent implements OnInit {
   posterForm = new FormGroup({
-    description: new FormControl('', Validators.required),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(200)
+    ]),
     happensAt: new FormControl('', Validators.required),
-    visible: new FormControl('', Validators.required)
+    visible: new FormControl(''),
+    image: new FormControl('', Validators.required)
   });
 
   formData = new FormData();
@@ -82,5 +87,6 @@ export class APostersComponent implements OnInit {
     this.formData.set('visible', this.posterForm.value.visible);
 
     this.posterService.createPoster(this.formData);
+    this.posterForm.reset();
   }
 }

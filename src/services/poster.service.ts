@@ -11,11 +11,10 @@ export class PosterService {
   constructor(private http: HttpClient) {}
 
   createPoster(form: any) {
-    console.log('serwis');
-    console.log(form);
-
     return this.http
-      .post(this.baseUrl + 'posters/create', form)
+      .post(this.baseUrl + 'posters/create', form, {
+        observe: 'response'
+      })
       .subscribe((res: any) => {
         console.log(res);
       });

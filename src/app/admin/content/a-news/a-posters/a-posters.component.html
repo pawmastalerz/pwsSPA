@@ -9,13 +9,13 @@
           <div class="col-12 col-sm-6">
             <form [formGroup]="posterForm" class="mx-auto d-block">
               <p class="mt-2 mt-sm-3">Opis:</p>
-              <input type="text" formControlName="description" class="form-control">
+              <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
               <br>
               <p>Data wydarzenia:</p>
               <input type="date" formControlName="happensAt" class="form-control">
               <br>
               <p>Plik</p>
-              <input #file type="file" class="form-control" multiple (change)="upload(file.files)">
+              <input #file type="file" formControlName="image" class="form-control" multiple (change)="upload(file.files)">
               <br>
               <p>Widoczność:</p>
               <input type="checkbox" formControlName="visible" class="form-control">
@@ -24,27 +24,23 @@
           </div>
           <div class="col-12 col-sm-6">
             <p>Podgląd</p>
-            <div class="preview">
-
-            </div>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary mt-2 mt-sm-3" (click)="this.onSubmit()">
-              <!-- [disabled]="posterForm.invalid || posterForm.pristine" -->
+            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-right" (click)="this.onSubmit()" [disabled]="posterForm.invalid || posterForm.pristine">
               Dodaj nowy plakat
             </button>
           </div>
         </div>
       </div>
     </nb-card-body>
-  </nb-card>
+    </nb-card>
 
-  <nb-card>
-    <nb-card-header>
-      Plakaty w bazie danych:
-    </nb-card-header>
-    <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
-    </nb-card-body>
-  </nb-card>
+    <nb-card>
+      <nb-card-header>
+        Plakaty w bazie danych:
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
 </div>
