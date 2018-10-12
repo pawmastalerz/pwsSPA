@@ -15,7 +15,7 @@
               <input type="date" formControlName="happensAt" class="form-control">
               <br>
               <p>Plik</p>
-              <input type="file" formControlName="file" class="form-control">
+              <input #file type="file" class="form-control" multiple (change)="upload(file.files)">
               <br>
               <p>Widoczność:</p>
               <input type="checkbox" formControlName="visible" class="form-control">

@@ -10,19 +10,12 @@ export class PosterService {
 
   constructor(private http: HttpClient) {}
 
-  createPoster(
-    description: string,
-    happensAt: Date,
-    visible: number,
-    file: any
-  ) {
+  createPoster(form: any) {
+    console.log('serwis');
+    console.log(form);
+
     return this.http
-      .post(this.baseUrl + 'posters/create', {
-        description,
-        happensAt,
-        visible,
-        file
-      })
+      .post(this.baseUrl + 'posters/create', form)
       .subscribe((res: any) => {
         console.log(res);
       });

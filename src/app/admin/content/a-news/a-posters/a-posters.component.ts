@@ -13,9 +13,10 @@ export class APostersComponent implements OnInit {
   posterForm = new FormGroup({
     description: new FormControl('', Validators.required),
     happensAt: new FormControl('', Validators.required),
-    visible: new FormControl('', Validators.required),
-    file: new FormControl('', Validators.required)
+    visible: new FormControl('', Validators.required)
   });
+
+  formData = new FormData();
 
   settings = {
     columns: {
@@ -65,12 +66,21 @@ export class APostersComponent implements OnInit {
     }
   }
 
+  upload(files) {
+    if (files.length === 0) {
+      return;
+    }
+
+    for (const file of files) {
+      this.formData.append(file.name, file);
+    }
+  }
+
   onSubmit() {
-    this.posterService.createPoster(
-      this.posterForm.value.description,
-      this.posterForm.value.happensAt,
-      this.posterForm.value.visible,
-      this.posterForm.value.file
-    );
+    this.formData.set('description', this.posterForm.value.description);
+    this.formData.set('happensAt', this.posterForm.value.happensAt);
+    this.formData.set('visible', this.posterForm.value.visible);
+
+    this.posterService.createPoster(this.formData);
   }
 }
