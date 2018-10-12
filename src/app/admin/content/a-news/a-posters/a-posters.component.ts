@@ -27,6 +27,12 @@ export class APostersComponent implements OnInit {
 
           return formatted;
         }
+      },
+      visible: {
+        title: 'Widoczność',
+        valuePrepareFunction: value => {
+          return value === 1 ? 'Widoczny' : 'Ukryty';
+        }
       }
     }
   };

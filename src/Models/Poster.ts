@@ -3,5 +3,6 @@ export interface Poster {
   description: string;
   createdAt: Date;
   happensAt: Date;
+  visible: number;
   posterPhotoUrl: string;
 }
