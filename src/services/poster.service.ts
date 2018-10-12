@@ -10,8 +10,8 @@ export class PosterService {
 
   constructor(private http: HttpClient) {}
 
-  uploadPoster(file) {
-    return this.http.post(this.baseUrl + 'posters/upload', file, {
+  uploadPoster(form) {
+    return this.http.post(this.baseUrl + 'posters/upload', form, {
       observe: 'response'
     });
   }
