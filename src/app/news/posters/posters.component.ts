@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PosterService } from '../../../services/poster.service';
-import { Poster } from '../../../models/Poster';
+import { Poster } from 'src/models/Poster';
+import { PosterService } from 'src/services/poster.service';
 
 @Component({
   selector: 'app-posters',

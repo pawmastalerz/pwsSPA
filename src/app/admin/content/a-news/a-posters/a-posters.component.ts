@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { AuthService } from '../../../../../services/auth.service';
-import { PosterService } from '../../../../../services/poster.service';
+import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PosterService } from 'src/services/poster.service';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-a-posters',
@@ -12,7 +12,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class APostersComponent implements OnInit {
   posterForm = new FormGroup({
     description: new FormControl('', Validators.required),
-    happensAt: new FormControl('', Validators.required)
+    happensAt: new FormControl('', Validators.required),
+    visible: new FormControl('', Validators.required),
+    file: new FormControl('', Validators.required)
   });
 
   settings = {
@@ -40,9 +42,8 @@ export class APostersComponent implements OnInit {
   data: any;
 
   constructor(
-    private authService: AuthService,
     private posterService: PosterService,
-    private cd: ChangeDetectorRef
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -65,6 +66,11 @@ export class APostersComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Tworzę nowy plakat...');
+    this.posterService.createPoster(
+      this.posterForm.value.description,
+      this.posterForm.value.happensAt,
+      this.posterForm.value.visible,
+      this.posterForm.value.file
+    );
   }
 }

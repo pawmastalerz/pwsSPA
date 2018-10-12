@@ -10,10 +10,22 @@ export class PosterService {
 
   constructor(private http: HttpClient) {}
 
-  uploadPoster(form) {
-    return this.http.post(this.baseUrl + 'posters/upload', form, {
-      observe: 'response'
-    });
+  createPoster(
+    description: string,
+    happensAt: Date,
+    visible: number,
+    file: any
+  ) {
+    return this.http
+      .post(this.baseUrl + 'posters/create', {
+        description,
+        happensAt,
+        visible,
+        file
+      })
+      .subscribe((res: any) => {
+        console.log(res);
+      });
   }
 
   getNewsPosters() {
