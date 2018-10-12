@@ -19,7 +19,7 @@
           <div class="col-12 col-sm-6">
             <p>Podgląd</p>
             <div class="preview">
-              
+
             </div>
           </div>
           <div class="col-12">
@@ -32,5 +32,12 @@
     </nb-card-body>
   </nb-card>
 
-  <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+  <nb-card>
+    <nb-card-header>
+      Plakaty w bazie danych:
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
 </div>
