@@ -33,7 +33,6 @@ export class APostersComponent implements OnInit {
         title: 'Data',
         valuePrepareFunction: value => {
           const formatted = moment(value).format('DD-MM-YYYY HH:mm');
-
           return formatted;
         }
       },
@@ -43,7 +42,23 @@ export class APostersComponent implements OnInit {
           return value === 1 ? 'Widoczny' : 'Ukryty';
         }
       }
-    }
+    },
+    mode: 'external',
+    actions: {
+      add: false,
+      custom: [
+        {
+          name: 'edit',
+          title: '<i class="fa fa-search"></i>'
+        }
+      ]
+    },
+    edit: {
+      editButtonContent: '<i class="fa fa-edit"></i>'
+    },
+    delete: { deleteButtonContent: '<i class="fa fa-trash"></i>' },
+    filter: { inputClass: 'happensAt' },
+    noDataMessage: 'Nie znaleziono żadnych danych w bazie'
   };
 
   source: LocalDataSource;
@@ -56,8 +71,7 @@ export class APostersComponent implements OnInit {
     this.loadPosters();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   loadPosters() {
     if (this.authService.isAuthenticated) {
@@ -81,6 +95,7 @@ export class APostersComponent implements OnInit {
 
     for (const file of files) {
       this.formData.append(file.name, file);
+      console.log(file);
     }
   }
 
@@ -89,11 +104,27 @@ export class APostersComponent implements OnInit {
     this.formData.set('happensAt', this.posterForm.value.happensAt);
     this.formData.set('visible', this.posterForm.value.visible);
 
-    this.posterService.createPoster(this.formData)
-      .subscribe((res: any) => {
+    this.posterService.createPoster(this.formData).subscribe(
+      (res: any) => {
         console.log(res);
         this.loadPosters();
-      });
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.posterForm.reset();
+  }
+
+  onCustom(event) {
+    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`);
+  }
+
+  onEdit(event) {
+    alert(`Edytuję plakat o id ${event.data.id}`);
+  }
+
+  onDelete(event) {
+    alert(`Usuwam plakat o id ${event.data.id}`);
   }
 }

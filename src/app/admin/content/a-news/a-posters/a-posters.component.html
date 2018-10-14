@@ -33,14 +33,14 @@
         </div>
       </div>
     </nb-card-body>
-    </nb-card>
+  </nb-card>
 
-    <nb-card>
-      <nb-card-header>
-        Plakaty w bazie danych:
-      </nb-card-header>
-      <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
-      </nb-card-body>
-    </nb-card>
+  <nb-card>
+    <nb-card-header>
+      Plakaty w bazie danych:
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)" (edit)="onEdit($event)" (delete)="onDelete($event)"></ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
 </div>

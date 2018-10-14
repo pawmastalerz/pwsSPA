@@ -5,6 +5,7 @@ import { environment } from './../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PosterService {
   baseUrl = environment.apiUrl;
 
