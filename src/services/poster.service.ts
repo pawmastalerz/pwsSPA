@@ -29,4 +29,10 @@ export class PosterService {
       observe: 'response'
     });
   }
+
+  deletePoster(id: number) {
+    return this.http.delete(this.baseUrl + 'posters/' + id, {
+      observe: 'response'
+    });
+  }
 }

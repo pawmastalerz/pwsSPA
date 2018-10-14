@@ -125,6 +125,14 @@ export class APostersComponent implements OnInit {
   }
 
   onDelete(event) {
-    alert(`Usuwam plakat o id ${event.data.id}`);
+    this.posterService.deletePoster(Number(`${event.data.id}`)).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.loadPosters();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
