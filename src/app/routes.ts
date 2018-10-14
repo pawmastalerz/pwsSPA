@@ -16,13 +16,13 @@ import { HomeComponent } from './admin/content/home/home.component';
 import { ANewsComponent } from './admin/content/a-news/a-news.component';
 
 export const appRoutes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'gallery', component: GalleryComponent },
-  { path: 'team', component: TeamComponent },
-  { path: 'visitors', component: VisitorsComponent },
+  { path: 'oprojekcie', component: AboutComponent },
+  { path: 'aktualnosci', component: NewsComponent },
+  { path: 'galeria', component: GalleryComponent },
+  { path: 'onas', component: TeamComponent },
+  { path: 'goscie', component: VisitorsComponent },
   { path: 'skirtchat', component: SkirtchatComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'kontakt', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',

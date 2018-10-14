@@ -5,28 +5,28 @@
   <div class="collapse navbar-collapse" [ngClass]="isCollapsed ? 'd-block' : 'd-none'">
     <ul class="navbar-nav mx-auto text-center">
       <li class="nav-item mx-1">
-        <a class="nav-link" [routerLink]="['/news']">AKTUALNOŚCI</a>
+        <a class="nav-link" [routerLink]="['/aktualnosci']">AKTUALNOŚCI</a>
       </li>
       <li class="nav-item mx-1">
-        <a class="nav-link" [routerLink]="['/about']">O PROJEKCIE</a>
+        <a class="nav-link" [routerLink]="['/oprojekcie']">O PROJEKCIE</a>
       </li>
       <li class="nav-item mx-1">
-        <a class="nav-link" [routerLink]="['/gallery']">GALERIA</a>
+        <a class="nav-link" [routerLink]="['/galeria']">GALERIA</a>
       </li>
       <li class="nav-item mx-1" ngbDropdown>
         <a class="nav-link" id="nav-dropdown-2" ngbDropdownToggle>
           ZAINSPIRUJ!
         </a>
         <div ngbDropdownMenu class="mt-2">
-          <a class="dropdown-item" [routerLink]="['/visitors']">Odwiedzili nas</a>
+          <a class="dropdown-item" [routerLink]="['/goscie']">Odwiedzili nas</a>
           <a class="dropdown-item" [routerLink]="['/skirtchat']">#skirtchat</a>
         </div>
       </li>
       <li class="nav-item mx-1">
-        <a class="nav-link" [routerLink]="['/team']">O NAS</a>
+        <a class="nav-link" [routerLink]="['/onas']">O NAS</a>
       </li>
       <li class="nav-item mx-1">
-        <a class="nav-link" [routerLink]="['/contact']">KONTAKT</a>
+        <a class="nav-link" [routerLink]="['/kontakt']">KONTAKT</a>
       </li>
     </ul>
   </div>
