@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PosterService } from 'src/services/poster.service';
 import { AuthService } from 'src/services/auth.service';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-a-posters',
@@ -45,23 +46,25 @@ export class APostersComponent implements OnInit {
     }
   };
 
-  data: any;
+  source: LocalDataSource;
 
   constructor(
     private posterService: PosterService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.source = new LocalDataSource();
+    this.loadPosters();
+  }
 
   ngOnInit() {
-    this.loadPosters();
   }
 
   loadPosters() {
     if (this.authService.isAuthenticated) {
       this.posterService.getAllPosters().subscribe(
         (res: any) => {
-          this.data = res.body;
-          console.log(this.data);
+          this.source.load(res.body);
+          console.log(this.source);
           // console.log(+res.status);
         },
         error => {
@@ -86,7 +89,11 @@ export class APostersComponent implements OnInit {
     this.formData.set('happensAt', this.posterForm.value.happensAt);
     this.formData.set('visible', this.posterForm.value.visible);
 
-    this.posterService.createPoster(this.formData);
+    this.posterService.createPoster(this.formData)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.loadPosters();
+      });
     this.posterForm.reset();
   }
 }

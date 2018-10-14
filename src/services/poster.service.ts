@@ -14,9 +14,6 @@ export class PosterService {
     return this.http
       .post(this.baseUrl + 'posters/create', form, {
         observe: 'response'
-      })
-      .subscribe((res: any) => {
-        console.log(res);
       });
   }
 
