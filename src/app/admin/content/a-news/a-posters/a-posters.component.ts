@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PosterService } from 'src/services/poster.service';
 import { AuthService } from 'src/services/auth.service';
 import { LocalDataSource } from 'ng2-smart-table';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-a-posters',
@@ -66,8 +65,7 @@ export class APostersComponent implements OnInit {
 
   constructor(
     private posterService: PosterService,
-    private authService: AuthService,
-    private modalService: NgbModal
+    private authService: AuthService
   ) {
     this.source = new LocalDataSource();
     this.loadPosters();
@@ -136,8 +134,5 @@ export class APostersComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
   }
 }
