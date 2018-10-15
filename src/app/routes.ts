@@ -45,5 +45,5 @@ export const appRoutes: Routes = [
       }
     ]
   },
-  { path: '**', redirectTo: 'news', pathMatch: 'full' }
+  { path: '**', redirectTo: 'aktualnosci', pathMatch: 'full' }
 ];
