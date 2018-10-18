@@ -21,6 +21,7 @@ import { PostersComponent } from './news/posters/posters.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { AMPostersConfirmDeleteComponent } from './modals/a-m-posters-confirm-delete/a-m-posters-confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     ContactComponent,
     NewsCarouselComponent,
     PostersComponent,
-    LoginComponent
+    LoginComponent,
+    AMPostersConfirmDeleteComponent
   ],
   imports: [
     AppRoutingModule,
@@ -56,6 +58,9 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     multi: true
   }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AMPostersConfirmDeleteComponent
+  ]
 })
 export class AppModule {}
