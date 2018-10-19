@@ -40,7 +40,23 @@
       Plakaty w bazie danych:
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)" (edit)="onEdit($event)" (delete)="onDelete($event)"></ng2-smart-table>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)" (edit)="onEdit($event)" (delete)="onDeleteModal($event)"></ng2-smart-table>
     </nb-card-body>
   </nb-card>
 </div>
+
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  </div>
+  <div class="modal-body">
+    <p>Na pewno usunąć plakat "{{selectedPosterDescription}}"?</p>
+    <p>
+      Tej operacji <strong class="text-danger"> nie da się cofnąć!</strong>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
+    <button type="button" class="btn btn-danger" (click)="onDelete(); modal.close()">Usuń</button>
+  </div>
+</ng-template>

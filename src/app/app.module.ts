@@ -41,7 +41,7 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    NgbModule,
+    NgbModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
     AdminModule,

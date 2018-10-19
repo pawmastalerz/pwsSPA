@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PosterService } from 'src/services/poster.service';
 import { AuthService } from 'src/services/auth.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-a-posters',
@@ -11,6 +12,10 @@ import { LocalDataSource } from 'ng2-smart-table';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
+  @ViewChild('deleteModal') deleteModal: ElementRef;
+  selectedPosterId: string;
+  selectedPosterDescription: string;
+
   posterForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
@@ -65,7 +70,8 @@ export class APostersComponent implements OnInit {
 
   constructor(
     private posterService: PosterService,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalService: NgbModal
   ) {
     this.source = new LocalDataSource();
     this.loadPosters();
@@ -124,10 +130,18 @@ export class APostersComponent implements OnInit {
     alert(`Edytuję plakat o id ${event.data.id}`);
   }
 
-  onDelete(event) {
-    this.posterService.deletePoster(Number(`${event.data.id}`)).subscribe(
+  onDeleteModal(event) {
+    this.selectedPosterId = event.data.id;
+    this.selectedPosterDescription = event.data.description;
+    this.modalService.open(this.deleteModal);
+  }
+
+  onDelete() {
+    this.posterService.deletePoster(Number(this.selectedPosterId)).subscribe(
       (res: any) => {
         console.log(res);
+        this.selectedPosterDescription = '';
+        this.selectedPosterId = '';
         this.loadPosters();
       },
       error => {
