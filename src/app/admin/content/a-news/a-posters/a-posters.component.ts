@@ -129,7 +129,9 @@ export class APostersComponent implements OnInit {
         this.selectedPoster = res.body;
       }
     );
-    this.modalService.open(this.previewModal);
+    this.modalService.open(this.previewModal, {
+      centered: true
+    });
   }
 
   onEdit(event) {
@@ -142,7 +144,9 @@ export class APostersComponent implements OnInit {
         this.selectedPoster = res.body;
       }
     );
-    this.modalService.open(this.deleteModal);
+    this.modalService.open(this.deleteModal, {
+      centered: true
+    });
   }
 
   onDelete() {

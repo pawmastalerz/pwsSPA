@@ -40,7 +40,8 @@
       Plakaty w bazie danych:
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEdit($event)" (delete)="onDeleteModal($event)"></ng2-smart-table>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEdit($event)"
+        (delete)="onDeleteModal($event)"></ng2-smart-table>
     </nb-card-body>
   </nb-card>
 </div>
@@ -49,26 +50,29 @@
   <div class="modal-body">
     <div class="container-fluid">
       <div class="row">
-        <div class="col justify-content-center">
+        <div class="col text-center">
           <img src="http://localhost:5000/{{selectedPoster.posterPhotoUrl}}" class="img-fluid" alt="">
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.close()">Zamknij</button>
-    </div>
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Zamknij</button>
+  </div>
 </ng-template>
 
 <ng-template #deleteModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-  </div>
   <div class="modal-body">
-    <p>Na pewno usunąć plakat "{{selectedPoster.description}}"?</p>
-    <p>
-      Tej operacji <strong class="text-danger"> nie da się cofnąć!</strong>
-    </p>
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>Na pewno usunąć plakat "{{selectedPoster.description}}"?</p>
+          <p>
+            Tej operacji <strong class="text-danger"> nie da się cofnąć!</strong>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
