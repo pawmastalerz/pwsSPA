@@ -37,7 +37,7 @@ export class APostersComponent implements OnInit {
       happensAt: {
         title: 'Data',
         valuePrepareFunction: value => {
-          const formatted = moment(value).format('DD-MM-YYYY HH:mm');
+          const formatted = moment(value).format('DD-MM-YYYY');
           return formatted;
         }
       },
