@@ -30,6 +30,12 @@ export class PosterService {
     });
   }
 
+  getPoster(id: number) {
+    return this.http.get(this.baseUrl + 'posters/' + id, {
+      observe: 'response'
+    });
+  }
+
   deletePoster(id: number) {
     return this.http.delete(this.baseUrl + 'posters/' + id, {
       observe: 'response'

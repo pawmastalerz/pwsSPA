@@ -5,6 +5,7 @@ import { PosterService } from 'src/services/poster.service';
 import { AuthService } from 'src/services/auth.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Poster } from 'src/models/Poster';
 
 @Component({
   selector: 'app-a-posters',
@@ -13,8 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class APostersComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: ElementRef;
-  selectedPosterId: string;
-  selectedPosterDescription: string;
+  selectedPoster: Poster;
 
   posterForm = new FormGroup({
     description: new FormControl('', [
@@ -131,17 +131,18 @@ export class APostersComponent implements OnInit {
   }
 
   onDeleteModal(event) {
-    this.selectedPosterId = event.data.id;
-    this.selectedPosterDescription = event.data.description;
+    this.posterService.getPoster(Number(event.data.id)).subscribe(
+      (res: any) => {
+        this.selectedPoster = res.body;
+      }
+    );
     this.modalService.open(this.deleteModal);
   }
 
   onDelete() {
-    this.posterService.deletePoster(Number(this.selectedPosterId)).subscribe(
+    this.posterService.deletePoster(Number(this.selectedPoster.id)).subscribe(
       (res: any) => {
         console.log(res);
-        this.selectedPosterDescription = '';
-        this.selectedPosterId = '';
         this.loadPosters();
       },
       error => {
