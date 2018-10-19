@@ -103,7 +103,6 @@ export class APostersComponent implements OnInit {
 
     for (const file of files) {
       this.formData.append(file.name, file);
-      console.log(file);
     }
   }
 
@@ -122,6 +121,7 @@ export class APostersComponent implements OnInit {
       }
     );
     this.posterForm.reset();
+    this.formData = new FormData();
   }
 
   onPreviewModal(event) {
