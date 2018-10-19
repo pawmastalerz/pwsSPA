@@ -40,10 +40,25 @@
       Plakaty w bazie danych:
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustom($event)" (edit)="onEdit($event)" (delete)="onDeleteModal($event)"></ng2-smart-table>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEdit($event)" (delete)="onDeleteModal($event)"></ng2-smart-table>
     </nb-card-body>
   </nb-card>
 </div>
+
+<ng-template #previewModal let-modal>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col justify-content-center">
+          <img src="http://localhost:5000/{{selectedPoster.posterPhotoUrl}}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Zamknij</button>
+    </div>
+</ng-template>
 
 <ng-template #deleteModal let-modal>
   <div class="modal-header">

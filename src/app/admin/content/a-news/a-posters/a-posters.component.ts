@@ -14,6 +14,7 @@ import { Poster } from 'src/models/Poster';
 })
 export class APostersComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: ElementRef;
+  @ViewChild('previewModal') previewModal: ElementRef;
   selectedPoster: Poster;
 
   posterForm = new FormGroup({
@@ -122,8 +123,13 @@ export class APostersComponent implements OnInit {
     this.posterForm.reset();
   }
 
-  onCustom(event) {
-    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`);
+  onPreviewModal(event) {
+    this.posterService.getPoster(Number(event.data.id)).subscribe(
+      (res: any) => {
+        this.selectedPoster = res.body;
+      }
+    );
+    this.modalService.open(this.previewModal);
   }
 
   onEdit(event) {
