@@ -51,6 +51,7 @@ export class APostersComponent implements OnInit {
     },
     mode: 'external',
     actions: {
+      columnTitle: 'Akcje',
       add: false,
       custom: [
         {
