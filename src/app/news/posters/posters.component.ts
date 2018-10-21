@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Poster } from 'src/models/Poster';
 import { PosterService } from 'src/services/poster.service';
@@ -9,6 +10,7 @@ import { PosterService } from 'src/services/poster.service';
 })
 export class PostersComponent implements OnInit {
   posters: Poster[];
+  rootUrl = environment.rootUrl;
 
   constructor(private posterService: PosterService) {}
 

@@ -6,6 +6,7 @@ import { AuthService } from 'src/services/auth.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from 'src/models/Poster';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-a-posters',
@@ -16,6 +17,8 @@ export class APostersComponent implements OnInit {
   @ViewChild('deleteModal') deleteModal: ElementRef;
   @ViewChild('previewModal') previewModal: ElementRef;
   selectedPoster: Poster;
+
+  rootUrl = environment.rootUrl;
 
   posterForm = new FormGroup({
     description: new FormControl('', [
