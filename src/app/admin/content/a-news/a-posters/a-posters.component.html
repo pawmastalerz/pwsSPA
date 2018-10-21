@@ -15,7 +15,7 @@
               <input type="date" formControlName="happensAt" class="form-control">
               <br>
               <p>Plik</p>
-              <input #file type="file" formControlName="image" class="form-control-file" multiple (change)="onSelectFile($event)"
+              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectFile($event)"
                 accept="image/jpeg">
               <br>
               <p>Widoczność:</p>
@@ -26,8 +26,8 @@
               <br>
             </form>
           </div>
-          <div class="col-12 col-sm-6">
-            <p>Podgląd</p>
+          <div class="col-12 col-sm-6 text-center">
+            <img [src]="previewUrl" height="400">
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-right" (click)="this.onSubmit()" [disabled]="posterForm.invalid || posterForm.pristine">

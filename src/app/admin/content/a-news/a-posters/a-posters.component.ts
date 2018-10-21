@@ -20,6 +20,7 @@ export class APostersComponent implements OnInit {
   previewModal: ElementRef;
 
   selectedPoster: Poster;
+  previewUrl = '';
   rootUrl = environment.rootUrl;
 
   posterForm = new FormGroup({
@@ -107,6 +108,12 @@ export class APostersComponent implements OnInit {
     }
 
     for (const file of event.target.files) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => { // called once readAsDataURL is completed
+        this.previewUrl = String(reader.result);
+      };
+
       this.formData = new FormData();
       this.formData.append(file.name, file);
     }
@@ -128,6 +135,7 @@ export class APostersComponent implements OnInit {
     );
     this.posterForm.reset();
     this.formData = new FormData();
+    this.previewUrl = '';
   }
 
   onPreviewModal(event) {
