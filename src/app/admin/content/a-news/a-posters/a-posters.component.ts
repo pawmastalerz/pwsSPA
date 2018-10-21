@@ -14,10 +14,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
-  @ViewChild('deleteModal') deleteModal: ElementRef;
-  @ViewChild('previewModal') previewModal: ElementRef;
-  selectedPoster: Poster;
+  @ViewChild('deleteModal')
+  deleteModal: ElementRef;
+  @ViewChild('previewModal')
+  previewModal: ElementRef;
 
+  selectedPoster: Poster;
   rootUrl = environment.rootUrl;
 
   posterForm = new FormGroup({
@@ -128,11 +130,11 @@ export class APostersComponent implements OnInit {
   }
 
   onPreviewModal(event) {
-    this.posterService.getPoster(Number(event.data.id)).subscribe(
-      (res: any) => {
+    this.posterService
+      .getPoster(Number(event.data.id))
+      .subscribe((res: any) => {
         this.selectedPoster = res.body;
-      }
-    );
+      });
     this.modalService.open(this.previewModal, {
       centered: true
     });
@@ -143,11 +145,11 @@ export class APostersComponent implements OnInit {
   }
 
   onDeleteModal(event) {
-    this.posterService.getPoster(Number(event.data.id)).subscribe(
-      (res: any) => {
+    this.posterService
+      .getPoster(Number(event.data.id))
+      .subscribe((res: any) => {
         this.selectedPoster = res.body;
-      }
-    );
+      });
     this.modalService.open(this.deleteModal, {
       centered: true
     });
