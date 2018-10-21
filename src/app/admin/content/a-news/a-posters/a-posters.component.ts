@@ -29,7 +29,7 @@ export class APostersComponent implements OnInit {
       Validators.maxLength(200)
     ]),
     happensAt: new FormControl('', Validators.required),
-    visible: new FormControl(''),
+    visible: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
 
