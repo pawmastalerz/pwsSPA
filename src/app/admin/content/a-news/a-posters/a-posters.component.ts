@@ -101,12 +101,13 @@ export class APostersComponent implements OnInit {
     }
   }
 
-  upload(files) {
-    if (files.length === 0) {
+  onSelectFile(event) {
+    if (event.target.files.length === 0) {
       return;
     }
 
-    for (const file of files) {
+    for (const file of event.target.files) {
+      this.formData = new FormData();
       this.formData.append(file.name, file);
     }
   }
