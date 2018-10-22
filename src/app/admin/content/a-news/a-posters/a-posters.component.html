@@ -44,7 +44,7 @@
       Plakaty w bazie danych:
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEdit($event)"
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEditModal($event)"
         (delete)="onDeleteModal($event)"></ng2-smart-table>
     </nb-card-body>
   </nb-card>
@@ -81,5 +81,20 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
     <button type="button" class="btn btn-danger" (click)="onDelete(); modal.close()">Usuń</button>
+  </div>
+</ng-template>
+
+<ng-template #editModal let-modal>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <p>Modal do edycji.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
   </div>
 </ng-template>

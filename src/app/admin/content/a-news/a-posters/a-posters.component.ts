@@ -18,6 +18,8 @@ export class APostersComponent implements OnInit {
   deleteModal: ElementRef;
   @ViewChild('previewModal')
   previewModal: ElementRef;
+  @ViewChild('editModal')
+  editModal: ElementRef;
 
   selectedPoster: Poster;
   previewUrl = '';
@@ -110,7 +112,7 @@ export class APostersComponent implements OnInit {
     for (const file of event.target.files) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = (e) => { // called once readAsDataURL is completed
+      reader.onload = () => {
         this.previewUrl = String(reader.result);
       };
 
@@ -138,6 +140,18 @@ export class APostersComponent implements OnInit {
     this.previewUrl = '';
   }
 
+  onEditModal(event) {
+    this.posterService
+      .getPoster(Number(event.data.id))
+      .subscribe((res: any) => {
+        this.selectedPoster = res.body;
+        console.log(this.selectedPoster);
+      });
+    this.modalService.open(this.editModal, {
+      centered: true
+    });
+  }
+
   onPreviewModal(event) {
     this.posterService
       .getPoster(Number(event.data.id))
@@ -147,10 +161,6 @@ export class APostersComponent implements OnInit {
     this.modalService.open(this.previewModal, {
       centered: true
     });
-  }
-
-  onEdit(event) {
-    alert(`Edytuję plakat o id ${event.data.id}`);
   }
 
   onDeleteModal(event) {
