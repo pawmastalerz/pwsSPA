@@ -7,6 +7,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from 'src/models/Poster';
 import { environment } from 'src/environments/environment';
+import { Xliff } from '@angular/compiler';
 
 @Component({
   selector: 'app-a-posters',
@@ -36,7 +37,7 @@ export class APostersComponent implements OnInit {
     image: new FormControl('', Validators.required)
   });
 
-  formData = new FormData();
+  createFormData = new FormData();
 
   settings = {
     columns: {
@@ -116,17 +117,17 @@ export class APostersComponent implements OnInit {
         this.previewUrl = String(reader.result);
       };
 
-      this.formData = new FormData();
-      this.formData.append(file.name, file);
+      this.createFormData = new FormData();
+      this.createFormData.append(file.name, file);
     }
   }
 
   onSubmit() {
-    this.formData.set('description', this.posterForm.value.description);
-    this.formData.set('happensAt', this.posterForm.value.happensAt);
-    this.formData.set('visible', this.posterForm.value.visible);
+    this.createFormData.set('description', this.posterForm.value.description);
+    this.createFormData.set('happensAt', this.posterForm.value.happensAt);
+    this.createFormData.set('visible', this.posterForm.value.visible);
 
-    this.posterService.createPoster(this.formData).subscribe(
+    this.posterService.createPoster(this.createFormData).subscribe(
       (res: any) => {
         console.log(res);
         this.loadPosters();
@@ -136,7 +137,7 @@ export class APostersComponent implements OnInit {
       }
     );
     this.posterForm.reset();
-    this.formData = new FormData();
+    this.createFormData = new FormData();
     this.previewUrl = '';
   }
 
@@ -148,6 +149,7 @@ export class APostersComponent implements OnInit {
         console.log(this.selectedPoster);
       });
     this.modalService.open(this.editModal, {
+      size: 'lg',
       centered: true
     });
   }
