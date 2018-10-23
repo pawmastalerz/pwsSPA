@@ -5,17 +5,15 @@ import { environment } from './../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-
 export class PosterService {
   baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   createPoster(form: any) {
-    return this.http
-      .post(this.baseUrl + 'posters/create', form, {
-        observe: 'response'
-      });
+    return this.http.post(this.baseUrl + 'posters/create', form, {
+      observe: 'response'
+    });
   }
 
   getNewsPosters() {
@@ -32,6 +30,12 @@ export class PosterService {
 
   getPoster(id: number) {
     return this.http.get(this.baseUrl + 'posters/' + id, {
+      observe: 'response'
+    });
+  }
+
+  updatePoster(form: any) {
+    return this.http.put(this.baseUrl + 'posters/update', form, {
       observe: 'response'
     });
   }

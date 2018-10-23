@@ -7,11 +7,10 @@
         <div class="col-12 text-center">
           <form [formGroup]="editForm" class="mx-auto d-block">
             <p class="mt-2 mt-sm-3">Opis:</p>
-            <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" value="{{selectedPoster.description}}"
-              class="form-control">
+            <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
             <br>
             <p>Data wydarzenia:</p>
-            <input type="date" formControlName="happensAt" class="form-control" value="{{selectedPoster.happensAt | date : 'yyyy-MM-dd'}}">
+            <input type="date" formControlName="happensAt" class="form-control" value="{{this.selectedPoster.happensAt | date : 'yyyy-MM-dd'}}">
             <br>
             <p>Widoczność:</p>
             <select class="form-control" formControlName="visible">
@@ -20,7 +19,8 @@
             </select>
             <br>
             <p>Zmień obraz</p>
-            <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditFile($event)" accept="image/jpeg">
+            <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditFile($event)"
+              accept="image/jpeg">
             <br>
           </form>
         </div>
@@ -29,6 +29,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close(); onSubmitEdit()" [disabled]="editForm.invalid || editForm.pristine">Aktualizuj</button>
   </div>
 </ng-template>
 

@@ -115,6 +115,8 @@ export class APostersComponent implements OnInit {
     }
   }
 
+  // New poster
+
   onSelectFile(event) {
     if (event.target.files.length === 0) {
       return;
@@ -151,12 +153,19 @@ export class APostersComponent implements OnInit {
     this.previewUrl = '';
   }
 
+  // Table
+
   onEditModal(event) {
     this.posterService
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
-        console.log(this.selectedPoster);
+        this.editForm.setValue({
+          'description': this.selectedPoster.description,
+          'happensAt': this.selectedPoster.happensAt,
+          'visible': this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
+          'image': null
+        });
         this.modalService.open(this.editModal, {
           centered: true
         });
@@ -164,7 +173,34 @@ export class APostersComponent implements OnInit {
   }
 
   onSelectEditFile(event) {
-    console.log(event);
+    if (event.target.files.length === 0) {
+      return;
+    }
+
+    for (const file of event.target.files) {
+      this.editFormData = new FormData();
+      this.editFormData.append(file.name, file);
+      console.log(this.editFormData);
+    }
+  }
+
+  onSubmitEdit() {
+    this.editFormData.set('id', this.selectedPoster.id.toString());
+    this.editFormData.set('description', this.editForm.value.description);
+    this.editFormData.set('happensAt', this.editForm.value.happensAt);
+    this.editFormData.set('visible', this.editForm.value.visible);
+
+    this.posterService.updatePoster(this.editFormData).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.loadPosters();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.editForm.reset();
+    this.editFormData = new FormData();
   }
 
   onPreviewModal(event) {
