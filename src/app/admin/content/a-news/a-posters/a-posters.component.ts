@@ -7,6 +7,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from 'src/models/Poster';
 import { environment } from 'src/environments/environment';
+import { AlertifyService } from 'src/services/alertify.service';
 
 @Component({
   selector: 'app-a-posters',
@@ -92,7 +93,8 @@ export class APostersComponent implements OnInit {
   constructor(
     private posterService: PosterService,
     private authService: AuthService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private alertifyService: AlertifyService
   ) {
     this.source = new LocalDataSource();
     this.loadPosters();
@@ -104,12 +106,15 @@ export class APostersComponent implements OnInit {
     if (this.authService.isAuthenticated) {
       this.posterService.getAllPosters().subscribe(
         (res: any) => {
-          this.source.load(res.body);
-          console.log(this.source);
-          // console.log(+res.status);
+          if (+res.status === 200) {
+            this.source.load(res.body);
+          } else {
+            this.alertifyService.error('Błąd podczas ładowania listy plakatów');
+          }
         },
         error => {
           console.log(error);
+          this.alertifyService.error('Błąd podczas ładowania listy plakatów');
         }
       );
     }
@@ -141,30 +146,49 @@ export class APostersComponent implements OnInit {
 
     this.posterService.createPoster(this.createFormData).subscribe(
       (res: any) => {
-        console.log(res);
+        if (+res.status === 200) {
+          this.alertifyService.success(
+            'Utworzono plakat "' + this.createForm.value.description + '"'
+          );
+        } else {
+          this.alertifyService.error(
+            'Błąd przy tworzeniu plakatu "' +
+              this.createForm.value.description +
+              '"'
+          );
+        }
         this.loadPosters();
+        this.createForm.reset();
+        this.createFormData = new FormData();
+        this.previewUrl = '';
       },
       error => {
         console.log(error);
+        this.alertifyService.error(
+          'Błąd przy tworzeniu plakatu "' +
+            this.createForm.value.description +
+            '"'
+        );
+        this.createForm.reset();
+        this.createFormData = new FormData();
+        this.previewUrl = '';
       }
     );
-    this.createForm.reset();
-    this.createFormData = new FormData();
-    this.previewUrl = '';
   }
 
   // Table
 
   onEditModal(event) {
+    this.alertifyService.message('Ładuję...');
     this.posterService
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
         this.editForm.setValue({
-          'description': this.selectedPoster.description,
-          'happensAt': this.selectedPoster.happensAt,
-          'visible': this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
-          'image': null
+          description: this.selectedPoster.description,
+          happensAt: this.selectedPoster.happensAt,
+          visible: this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
+          image: null
         });
         this.modalService.open(this.editModal, {
           centered: true
@@ -192,15 +216,32 @@ export class APostersComponent implements OnInit {
 
     this.posterService.updatePoster(this.editFormData).subscribe(
       (res: any) => {
-        console.log(res);
-        this.loadPosters();
+        if (+res.status === 200) {
+          this.loadPosters();
+          this.alertifyService.success(
+            'Zaktualizowano plakat "' + this.editForm.value.description + '"'
+          );
+        } else {
+          this.alertifyService.error(
+            'Błąd przy aktualizacji plakatu "' +
+              this.editForm.value.description +
+              '"'
+          );
+        }
+        this.editForm.reset();
+        this.editFormData = new FormData();
       },
       error => {
         console.log(error);
+        this.alertifyService.error(
+          'Błąd przy aktualizacji plakatu "' +
+            this.editForm.value.description +
+            '"'
+        );
+        this.editForm.reset();
+        this.editFormData = new FormData();
       }
     );
-    this.editForm.reset();
-    this.editFormData = new FormData();
   }
 
   onPreviewModal(event) {
@@ -228,11 +269,24 @@ export class APostersComponent implements OnInit {
   onDelete() {
     this.posterService.deletePoster(Number(this.selectedPoster.id)).subscribe(
       (res: any) => {
-        console.log(res);
+        if (+res.status === 200) {
+          this.alertifyService.error(
+            'Usunięto plakat "' + this.selectedPoster.description + '"'
+          );
+        } else {
+          this.alertifyService.error(
+            'Błąd przy usuwaniu plakatu "' +
+              this.selectedPoster.description +
+              '"'
+          );
+        }
         this.loadPosters();
       },
       error => {
         console.log(error);
+        this.alertifyService.error(
+          'Błąd przy usuwaniu plakatu "' + this.selectedPoster.description + '"'
+        );
       }
     );
   }
