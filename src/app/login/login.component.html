@@ -1,19 +1,15 @@
 <div class="container my-2 my-sm-3 my-md-5 px-0">
   <div class="card card-container mx-auto">
     <form [formGroup]="loginForm" (keydown)="keyDownFunction($event)" class="mx-auto d-block">
-      <label class="mt-2 mt-sm-3">
+      <label class="mt-2 mt-sm-3" for="username">
         Login:
-        <br>
-        <input type="text" formControlName="username" class="form-control" autofocus>
       </label>
-      <br>
-      <label>
+      <input type="text" formControlName="username" class="form-control" autofocus>
+      <label class="mt-2 mt-sm-3" for="password">
         Hasło:
-        <br>
-        <input type="password" formControlName="password" class="form-control">
       </label>
-      <br>
-      <button type="button" class="btn btn-primary mx-auto d-block mb-2 mb-sm-3" [disabled]="!loginForm.valid" (click)="onSubmit()">Zaloguj</button>
+      <input type="password" formControlName="password" class="form-control">
+      <button type="button" class="btn btn-primary mx-auto d-block my-2 my-sm-3" [disabled]="!loginForm.valid" (click)="onSubmit()">Zaloguj</button>
     </form>
   </div>
 </div>

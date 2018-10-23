@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isAuth: boolean;
+  nav = '../../assets/navbar/nav.jpg';
 
   public isCollapsed = false;
 

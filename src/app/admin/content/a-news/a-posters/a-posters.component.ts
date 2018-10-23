@@ -85,7 +85,7 @@ export class APostersComponent implements OnInit {
     },
     delete: { deleteButtonContent: '<i class="fa fa-trash"></i>' },
     filter: { inputClass: 'happensAt' },
-    noDataMessage: 'Nie znaleziono żadnych danych w bazie'
+    noDataMessage: 'Nie znaleziono żadnych plakatów w bazie'
   };
 
   source: LocalDataSource;
