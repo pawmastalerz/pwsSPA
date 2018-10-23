@@ -7,7 +7,6 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from 'src/models/Poster';
 import { environment } from 'src/environments/environment';
-import { Xliff } from '@angular/compiler';
 
 @Component({
   selector: 'app-a-posters',
@@ -26,7 +25,7 @@ export class APostersComponent implements OnInit {
   previewUrl = '';
   rootUrl = environment.rootUrl;
 
-  posterForm = new FormGroup({
+  createForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -36,8 +35,19 @@ export class APostersComponent implements OnInit {
     visible: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
-
   createFormData = new FormData();
+
+  editForm = new FormGroup({
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(200)
+    ]),
+    happensAt: new FormControl('', Validators.required),
+    visible: new FormControl('', Validators.required),
+    image: new FormControl('')
+  });
+  editFormData = new FormData();
 
   settings = {
     columns: {
@@ -123,9 +133,9 @@ export class APostersComponent implements OnInit {
   }
 
   onSubmit() {
-    this.createFormData.set('description', this.posterForm.value.description);
-    this.createFormData.set('happensAt', this.posterForm.value.happensAt);
-    this.createFormData.set('visible', this.posterForm.value.visible);
+    this.createFormData.set('description', this.createForm.value.description);
+    this.createFormData.set('happensAt', this.createForm.value.happensAt);
+    this.createFormData.set('visible', this.createForm.value.visible);
 
     this.posterService.createPoster(this.createFormData).subscribe(
       (res: any) => {
@@ -136,7 +146,7 @@ export class APostersComponent implements OnInit {
         console.log(error);
       }
     );
-    this.posterForm.reset();
+    this.createForm.reset();
     this.createFormData = new FormData();
     this.previewUrl = '';
   }
@@ -147,11 +157,14 @@ export class APostersComponent implements OnInit {
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
         console.log(this.selectedPoster);
+        this.modalService.open(this.editModal, {
+          centered: true
+        });
       });
-    this.modalService.open(this.editModal, {
-      size: 'lg',
-      centered: true
-    });
+  }
+
+  onSelectEditFile(event) {
+    console.log(event);
   }
 
   onPreviewModal(event) {
@@ -159,10 +172,10 @@ export class APostersComponent implements OnInit {
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
+        this.modalService.open(this.previewModal, {
+          centered: true
+        });
       });
-    this.modalService.open(this.previewModal, {
-      centered: true
-    });
   }
 
   onDeleteModal(event) {
@@ -170,10 +183,10 @@ export class APostersComponent implements OnInit {
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
+        this.modalService.open(this.deleteModal, {
+          centered: true
+        });
       });
-    this.modalService.open(this.deleteModal, {
-      centered: true
-    });
   }
 
   onDelete() {

@@ -1,54 +1,36 @@
-<div class="mt-3">
-  <nb-card>
-    <nb-card-header>
-      Dodaj nowy plakat:
-    </nb-card-header>
-    <nb-card-body>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-6">
-            <form [formGroup]="posterForm" class="mx-auto d-block">
-              <p class="mt-2 mt-sm-3">Opis:</p>
-              <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
-              <br>
-              <p>Data wydarzenia:</p>
-              <input type="date" formControlName="happensAt" class="form-control">
-              <br>
-              <p>Plik</p>
-              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectFile($event)"
-                accept="image/jpeg">
-              <br>
-              <p>Widoczność:</p>
-              <select class="form-control" formControlName="visible">
-                <option>Ukryty</option>
-                <option>Widoczny</option>
-              </select>
-              <br>
-            </form>
-          </div>
-          <div class="col-12 col-sm-6 text-center">
-            <img [src]="previewUrl" class="prev">
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onSubmit()" [disabled]="posterForm.invalid || posterForm.pristine">
-              Dodaj nowy plakat
-            </button>
-          </div>
+<!-- Templates -->
+
+<ng-template #editModal let-modal>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <form [formGroup]="editForm" class="mx-auto d-block">
+            <p class="mt-2 mt-sm-3">Opis:</p>
+            <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" value="{{selectedPoster.description}}"
+              class="form-control">
+            <br>
+            <p>Data wydarzenia:</p>
+            <input type="date" formControlName="happensAt" class="form-control" value="{{selectedPoster.happensAt | date : 'yyyy-MM-dd'}}">
+            <br>
+            <p>Widoczność:</p>
+            <select class="form-control" formControlName="visible">
+              <option>Ukryty</option>
+              <option>Widoczny</option>
+            </select>
+            <br>
+            <p>Zmień obraz</p>
+            <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditFile($event)" accept="image/jpeg">
+            <br>
+          </form>
         </div>
       </div>
-    </nb-card-body>
-  </nb-card>
-
-  <nb-card>
-    <nb-card-header>
-      Plakaty w bazie danych:
-    </nb-card-header>
-    <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEditModal($event)"
-        (delete)="onDeleteModal($event)"></ng2-smart-table>
-    </nb-card-body>
-  </nb-card>
-</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
+  </div>
+</ng-template>
 
 <ng-template #previewModal let-modal>
   <div class="modal-body">
@@ -84,17 +66,56 @@
   </div>
 </ng-template>
 
-<ng-template #editModal let-modal>
-  <div class="modal-body">
-    <div class="container">
-      <div class="row">
-        <div class="col text-center">
-          <p>Modal do edycji.</p>
+<!-- Code -->
+
+<div class="mt-3">
+  <nb-card>
+    <nb-card-header>
+      Dodaj nowy plakat:
+    </nb-card-header>
+    <nb-card-body>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <form [formGroup]="createForm" class="mx-auto d-block">
+              <p class="mt-2 mt-sm-3">Opis:</p>
+              <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
+              <br>
+              <p>Data wydarzenia:</p>
+              <input type="date" formControlName="happensAt" class="form-control">
+              <br>
+              <p>Plik</p>
+              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectFile($event)"
+                accept="image/jpeg">
+              <br>
+              <p>Widoczność:</p>
+              <select class="form-control" formControlName="visible">
+                <option>Ukryty</option>
+                <option>Widoczny</option>
+              </select>
+              <br>
+            </form>
+          </div>
+          <div class="col-12 col-sm-6 text-center">
+            <img [src]="previewUrl" class="prev">
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onSubmit()" [disabled]="createForm.invalid || createForm.pristine">
+              Dodaj nowy plakat
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
-  </div>
-</ng-template>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card>
+    <nb-card-header>
+      Plakaty w bazie danych:
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEditModal($event)"
+        (delete)="onDeleteModal($event)"></ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>
