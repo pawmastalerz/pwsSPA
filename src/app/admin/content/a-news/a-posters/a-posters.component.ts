@@ -26,7 +26,7 @@ export class APostersComponent implements OnInit {
   previewUrl = '';
   rootUrl = environment.rootUrl;
 
-  createForm = new FormGroup({
+  createPosterForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -36,9 +36,9 @@ export class APostersComponent implements OnInit {
     visible: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
-  createFormData = new FormData();
+  createPosterFormData = new FormData();
 
-  editForm = new FormGroup({
+  editPosterForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -48,7 +48,7 @@ export class APostersComponent implements OnInit {
     visible: new FormControl('', Validators.required),
     image: new FormControl('')
   });
-  editFormData = new FormData();
+  editPosterFormData = new FormData();
 
   settings = {
     columns: {
@@ -122,7 +122,7 @@ export class APostersComponent implements OnInit {
 
   // New poster
 
-  onSelectFile(event) {
+  onSelectPosterFile(event) {
     if (event.target.files.length === 0) {
       return;
     }
@@ -134,43 +134,43 @@ export class APostersComponent implements OnInit {
         this.previewUrl = String(reader.result);
       };
 
-      this.createFormData = new FormData();
-      this.createFormData.append(file.name, file);
+      this.createPosterFormData = new FormData();
+      this.createPosterFormData.append(file.name, file);
     }
   }
 
-  onSubmit() {
-    this.createFormData.set('description', this.createForm.value.description);
-    this.createFormData.set('happensAt', this.createForm.value.happensAt);
-    this.createFormData.set('visible', this.createForm.value.visible);
+  onPosterCreateSubmit() {
+    this.createPosterFormData.set('description', this.createPosterForm.value.description);
+    this.createPosterFormData.set('happensAt', this.createPosterForm.value.happensAt);
+    this.createPosterFormData.set('visible', this.createPosterForm.value.visible);
 
-    this.posterService.createPoster(this.createFormData).subscribe(
+    this.posterService.createPoster(this.createPosterFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
           this.alertifyService.success(
-            'Utworzono plakat "' + this.createForm.value.description + '"'
+            'Utworzono plakat "' + this.createPosterForm.value.description + '"'
           );
         } else {
           this.alertifyService.error(
             'Błąd przy tworzeniu plakatu "' +
-              this.createForm.value.description +
+              this.createPosterForm.value.description +
               '"'
           );
         }
         this.loadPosters();
-        this.createForm.reset();
-        this.createFormData = new FormData();
+        this.createPosterForm.reset();
+        this.createPosterFormData = new FormData();
         this.previewUrl = '';
       },
       error => {
         console.log(error);
         this.alertifyService.error(
           'Błąd przy tworzeniu plakatu "' +
-            this.createForm.value.description +
+            this.createPosterForm.value.description +
             '"'
         );
-        this.createForm.reset();
-        this.createFormData = new FormData();
+        this.createPosterForm.reset();
+        this.createPosterFormData = new FormData();
         this.previewUrl = '';
       }
     );
@@ -178,13 +178,13 @@ export class APostersComponent implements OnInit {
 
   // Table
 
-  onEditModal(event) {
+  onEditPosterModal(event) {
     this.alertifyService.message('Ładuję...');
     this.posterService
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
-        this.editForm.setValue({
+        this.editPosterForm.setValue({
           description: this.selectedPoster.description,
           happensAt: this.selectedPoster.happensAt,
           visible: this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
@@ -196,55 +196,55 @@ export class APostersComponent implements OnInit {
       });
   }
 
-  onSelectEditFile(event) {
+  onSelectEditPosterFile(event) {
     if (event.target.files.length === 0) {
       return;
     }
 
     for (const file of event.target.files) {
-      this.editFormData = new FormData();
-      this.editFormData.append(file.name, file);
-      console.log(this.editFormData);
+      this.editPosterFormData = new FormData();
+      this.editPosterFormData.append(file.name, file);
+      console.log(this.editPosterFormData);
     }
   }
 
-  onSubmitEdit() {
-    this.editFormData.set('id', this.selectedPoster.id.toString());
-    this.editFormData.set('description', this.editForm.value.description);
-    this.editFormData.set('happensAt', this.editForm.value.happensAt);
-    this.editFormData.set('visible', this.editForm.value.visible);
+  onPosterEditSubmit() {
+    this.editPosterFormData.set('id', this.selectedPoster.id.toString());
+    this.editPosterFormData.set('description', this.editPosterForm.value.description);
+    this.editPosterFormData.set('happensAt', this.editPosterForm.value.happensAt);
+    this.editPosterFormData.set('visible', this.editPosterForm.value.visible);
 
-    this.posterService.updatePoster(this.editFormData).subscribe(
+    this.posterService.updatePoster(this.editPosterFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
           this.loadPosters();
           this.alertifyService.success(
-            'Zaktualizowano plakat "' + this.editForm.value.description + '"'
+            'Zaktualizowano plakat "' + this.editPosterForm.value.description + '"'
           );
         } else {
           this.alertifyService.error(
             'Błąd przy aktualizacji plakatu "' +
-              this.editForm.value.description +
+              this.editPosterForm.value.description +
               '"'
           );
         }
-        this.editForm.reset();
-        this.editFormData = new FormData();
+        this.editPosterForm.reset();
+        this.editPosterFormData = new FormData();
       },
       error => {
         console.log(error);
         this.alertifyService.error(
           'Błąd przy aktualizacji plakatu "' +
-            this.editForm.value.description +
+            this.editPosterForm.value.description +
             '"'
         );
-        this.editForm.reset();
-        this.editFormData = new FormData();
+        this.editPosterForm.reset();
+        this.editPosterFormData = new FormData();
       }
     );
   }
 
-  onPreviewModal(event) {
+  onPreviewPosterModal(event) {
     this.posterService
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
@@ -255,7 +255,7 @@ export class APostersComponent implements OnInit {
       });
   }
 
-  onDeleteModal(event) {
+  onDeletePosterModal(event) {
     this.posterService
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
@@ -266,7 +266,7 @@ export class APostersComponent implements OnInit {
       });
   }
 
-  onDelete() {
+  onDeletePoster() {
     this.posterService.deletePoster(Number(this.selectedPoster.id)).subscribe(
       (res: any) => {
         if (+res.status === 200) {

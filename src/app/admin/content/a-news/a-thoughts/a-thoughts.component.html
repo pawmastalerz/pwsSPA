@@ -1,3 +1,38 @@
-<p>
-  a-thoughts works!
-</p>
+<div class="mt-3">
+  <nb-card>
+    <nb-card-header>
+      Dodaj nową myśl:
+    </nb-card-header>
+    <nb-card-body>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <form [formGroup]="createThoughtForm" class="mx-auto d-block">
+              <p class="mt-2 mt-sm-3">Opis:</p>
+              <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
+              <br>
+              <p>Plik</p>
+              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectFile($event)"
+                accept="image/jpeg">
+              <br>
+              <p>Widoczność:</p>
+              <select class="form-control" formControlName="visible">
+                <option>Ukryty</option>
+                <option>Widoczny</option>
+              </select>
+              <br>
+            </form>
+          </div>
+          <div class="col-12 col-sm-6 text-center">
+            <img [src]="previewUrl" class="prev">
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onSubmit()" [disabled]="createThoughtForm.invalid || createThoughtForm.pristine">
+              Dodaj nowy plakat
+            </button>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

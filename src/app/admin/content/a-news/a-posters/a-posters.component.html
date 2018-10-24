@@ -5,7 +5,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <form [formGroup]="editForm" class="mx-auto d-block">
+          <form [formGroup]="editPosterForm" class="mx-auto d-block">
             <p class="mt-2 mt-sm-3">Opis:</p>
             <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
             <br>
@@ -19,7 +19,7 @@
             </select>
             <br>
             <p>Zmień obraz</p>
-            <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditFile($event)"
+            <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditPosterFile($event)"
               accept="image/jpeg">
             <br>
           </form>
@@ -29,7 +29,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
-    <button type="button" class="btn btn-primary" (click)="modal.close(); onSubmitEdit()" [disabled]="editForm.invalid || editForm.pristine">Aktualizuj</button>
+    <button type="button" class="btn btn-primary" (click)="modal.close(); onPosterEditSubmit()" [disabled]="editPosterForm.invalid || editPosterForm.pristine">Aktualizuj</button>
   </div>
 </ng-template>
 
@@ -63,7 +63,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
-    <button type="button" class="btn btn-danger" (click)="onDelete(); modal.close()">Usuń</button>
+    <button type="button" class="btn btn-danger" (click)="onDeletePoster(); modal.close()">Usuń</button>
   </div>
 </ng-template>
 
@@ -78,7 +78,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-sm-6">
-            <form [formGroup]="createForm" class="mx-auto d-block">
+            <form [formGroup]="createPosterForm" class="mx-auto d-block">
               <p class="mt-2 mt-sm-3">Opis:</p>
               <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
               <br>
@@ -86,7 +86,7 @@
               <input type="date" formControlName="happensAt" class="form-control">
               <br>
               <p>Plik</p>
-              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectFile($event)"
+              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectPosterFile($event)"
                 accept="image/jpeg">
               <br>
               <p>Widoczność:</p>
@@ -101,7 +101,7 @@
             <img [src]="previewUrl" class="prev">
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onSubmit()" [disabled]="createForm.invalid || createForm.pristine">
+            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onPosterCreateSubmit()" [disabled]="createPosterForm.invalid || createPosterForm.pristine">
               Dodaj nowy plakat
             </button>
           </div>
@@ -115,8 +115,8 @@
       Plakaty w bazie danych:
     </nb-card-header>
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewModal($event)" (edit)="onEditModal($event)"
-        (delete)="onDeleteModal($event)"></ng2-smart-table>
+      <ng2-smart-table [settings]="settings" [source]="source" (custom)="onPreviewPosterModal($event)" (edit)="onEditPosterModal($event)"
+        (delete)="onDeletePosterModal($event)"></ng2-smart-table>
     </nb-card-body>
   </nb-card>
 </div>

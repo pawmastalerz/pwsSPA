@@ -1,7 +1,7 @@
-export interface Poster {
+export interface Thought {
   id: number;
   description: string;
   happensAt: Date;
   visible: number;
-  posterPhotoUrl: string;
+  thoughtPhotoUrl: string;
 }
