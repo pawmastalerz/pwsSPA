@@ -3,7 +3,6 @@ import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PosterService } from 'src/services/poster.service';
 import { AuthService } from 'src/services/auth.service';
-import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poster } from 'src/models/Poster';
 import { environment } from 'src/environments/environment';
@@ -89,15 +88,13 @@ export class APostersComponent implements OnInit {
     noDataMessage: 'Nie znaleziono żadnych plakatów w bazie'
   };
 
-  source: LocalDataSource;
-
   constructor(
     private posterService: PosterService,
     private authService: AuthService,
     private modalService: NgbModal,
     private alertifyService: AlertifyService
   ) {
-    this.source = new LocalDataSource();
+    // wczytaj dane do tabeli
     this.loadPosters();
   }
 
@@ -108,7 +105,7 @@ export class APostersComponent implements OnInit {
       this.posterService.getAllPosters().subscribe(
         (res: any) => {
           if (+res.status === 200) {
-            this.source.load(res.body);
+            // wczytaj dane do tabeli z res.body
           } else {
             this.alertifyService.error('Błąd podczas ładowania listy plakatów');
           }

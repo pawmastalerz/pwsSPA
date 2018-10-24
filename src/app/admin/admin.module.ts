@@ -13,7 +13,6 @@ import {
   NbTabsetModule,
   NbInputModule
 } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { AdminComponent } from './admin.component';
 import { HeaderComponent } from './header/header.component';
@@ -36,8 +35,7 @@ import { AThoughtsComponent } from './content/a-news/a-thoughts/a-thoughts.compo
     NbCardModule,
     NbMenuModule,
     NbTabsetModule,
-    NbInputModule,
-    Ng2SmartTableModule
+    NbInputModule
   ],
   declarations: [
     AdminComponent,

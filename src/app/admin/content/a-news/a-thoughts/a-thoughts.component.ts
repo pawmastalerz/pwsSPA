@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ThoughtService } from 'src/services/thought.service';
 import { AuthService } from 'src/services/auth.service';
-import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Thought } from 'src/models/Thought';
 import { environment } from 'src/environments/environment';
@@ -28,8 +27,6 @@ export class AThoughtsComponent implements OnInit {
     image: new FormControl('', Validators.required)
   });
   createThoughtFormData = new FormData();
-
-  source: LocalDataSource;
 
   constructor(
     private thoughtService: ThoughtService,
@@ -108,7 +105,7 @@ export class AThoughtsComponent implements OnInit {
       this.thoughtService.getAllThoughts().subscribe(
         (res: any) => {
           if (+res.status === 200) {
-            this.source.load(res.body);
+            // wczytaj dane do tabeli z res.body
           } else {
             this.alertifyService.error('Błąd podczas ładowania listy plakatów');
           }
