@@ -23,6 +23,7 @@ export class APostersComponent implements OnInit {
   editPosterModal: ElementRef;
 
   selectedPoster: Poster;
+  previewPosterToCreate = false;
   previewPosterUrl = '';
   rootUrl = environment.rootUrl;
 
@@ -127,6 +128,8 @@ export class APostersComponent implements OnInit {
       return;
     }
 
+    this.previewPosterToCreate = true;
+
     for (const file of event.target.files) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -161,6 +164,7 @@ export class APostersComponent implements OnInit {
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
         this.previewPosterUrl = '';
+        this.previewPosterToCreate = false;
       },
       error => {
         console.log(error);
@@ -172,6 +176,7 @@ export class APostersComponent implements OnInit {
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
         this.previewPosterUrl = '';
+        this.previewPosterToCreate = false;
       }
     );
   }
