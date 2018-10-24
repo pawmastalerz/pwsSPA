@@ -9,7 +9,7 @@
           <div class="col-12 col-sm-6">
             <form [formGroup]="createThoughtForm" class="mx-auto d-block">
               <p class="mt-2 mt-sm-3">Opis:</p>
-              <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
+              <textarea class="form-control" formControlName="description" rows="3" placeholder="(od 3 do 200 znaków)"></textarea>
               <br>
               <p>Plik</p>
               <input type="file" formControlName="image" class="form-control-file" (change)="onSelectThoughtFile($event)"
