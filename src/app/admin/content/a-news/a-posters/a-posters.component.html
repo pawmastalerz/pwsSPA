@@ -1,6 +1,6 @@
 <!-- Templates -->
 
-<ng-template #editModal let-modal>
+<ng-template #editPosterModal let-modal>
   <div class="modal-body">
     <div class="container">
       <div class="row">
@@ -33,7 +33,7 @@
   </div>
 </ng-template>
 
-<ng-template #previewModal let-modal>
+<ng-template #previewPosterModal let-modal>
   <div class="modal-body">
     <div class="container-fluid">
       <div class="row">
@@ -48,7 +48,7 @@
   </div>
 </ng-template>
 
-<ng-template #deleteModal let-modal>
+<ng-template #deletePosterModal let-modal>
   <div class="modal-body">
     <div class="container">
       <div class="row">
@@ -98,7 +98,7 @@
             </form>
           </div>
           <div class="col-12 col-sm-6 text-center">
-            <img [src]="previewUrl" class="prev">
+            <img [src]="previewPosterUrl" class="prev">
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onPosterCreateSubmit()" [disabled]="createPosterForm.invalid || createPosterForm.pristine">

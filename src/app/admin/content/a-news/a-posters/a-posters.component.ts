@@ -15,15 +15,15 @@ import { AlertifyService } from 'src/services/alertify.service';
   styleUrls: ['./a-posters.component.scss']
 })
 export class APostersComponent implements OnInit {
-  @ViewChild('deleteModal')
-  deleteModal: ElementRef;
-  @ViewChild('previewModal')
-  previewModal: ElementRef;
-  @ViewChild('editModal')
-  editModal: ElementRef;
+  @ViewChild('deletePosterModal')
+  deletePosterModal: ElementRef;
+  @ViewChild('previewPosterModal')
+  previewPosterModal: ElementRef;
+  @ViewChild('editPosterModal')
+  editPosterModal: ElementRef;
 
   selectedPoster: Poster;
-  previewUrl = '';
+  previewPosterUrl = '';
   rootUrl = environment.rootUrl;
 
   createPosterForm = new FormGroup({
@@ -131,7 +131,7 @@ export class APostersComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.previewUrl = String(reader.result);
+        this.previewPosterUrl = String(reader.result);
       };
 
       this.createPosterFormData = new FormData();
@@ -160,7 +160,7 @@ export class APostersComponent implements OnInit {
         this.loadPosters();
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
-        this.previewUrl = '';
+        this.previewPosterUrl = '';
       },
       error => {
         console.log(error);
@@ -171,7 +171,7 @@ export class APostersComponent implements OnInit {
         );
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
-        this.previewUrl = '';
+        this.previewPosterUrl = '';
       }
     );
   }
@@ -190,7 +190,7 @@ export class APostersComponent implements OnInit {
           visible: this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
           image: null
         });
-        this.modalService.open(this.editModal, {
+        this.modalService.open(this.editPosterModal, {
           centered: true
         });
       });
@@ -249,7 +249,7 @@ export class APostersComponent implements OnInit {
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
-        this.modalService.open(this.previewModal, {
+        this.modalService.open(this.previewPosterModal, {
           centered: true
         });
       });
@@ -260,7 +260,7 @@ export class APostersComponent implements OnInit {
       .getPoster(Number(event.data.id))
       .subscribe((res: any) => {
         this.selectedPoster = res.body;
-        this.modalService.open(this.deleteModal, {
+        this.modalService.open(this.deletePosterModal, {
           centered: true
         });
       });
