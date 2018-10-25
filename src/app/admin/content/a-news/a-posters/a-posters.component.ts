@@ -17,15 +17,13 @@ import { AlertifyService } from 'src/services/alertify.service';
 export class APostersComponent implements OnInit {
   @ViewChild('deletePosterModal')
   deletePosterModal: ElementRef;
-  @ViewChild('previewPosterModal')
-  previewPosterModal: ElementRef;
-  @ViewChild('editPosterModal')
-  editPosterModal: ElementRef;
+
+  rootUrl = environment.rootUrl;
 
   selectedPoster: Poster;
-  previewPosterToCreate = false;
-  previewPosterUrl = '';
-  rootUrl = environment.rootUrl;
+  previewCreatePosterUrl = '';
+  previewEditPosterUrl = '';
+  showPosterDetails = false;
 
   createPosterForm = new FormGroup({
     description: new FormControl('', [
@@ -73,13 +71,7 @@ export class APostersComponent implements OnInit {
     mode: 'external',
     actions: {
       columnTitle: 'Akcje',
-      add: false,
-      custom: [
-        {
-          name: 'edit',
-          title: '<i class="fa fa-search"></i>'
-        }
-      ]
+      add: false
     },
     edit: {
       editButtonContent: '<i class="fa fa-edit"></i>'
@@ -128,13 +120,11 @@ export class APostersComponent implements OnInit {
       return;
     }
 
-    this.previewPosterToCreate = true;
-
     for (const file of event.target.files) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.previewPosterUrl = String(reader.result);
+        this.previewCreatePosterUrl = String(reader.result);
       };
 
       this.createPosterFormData = new FormData();
@@ -143,9 +133,18 @@ export class APostersComponent implements OnInit {
   }
 
   onPosterCreateSubmit() {
-    this.createPosterFormData.set('description', this.createPosterForm.value.description);
-    this.createPosterFormData.set('happensAt', this.createPosterForm.value.happensAt);
-    this.createPosterFormData.set('visible', this.createPosterForm.value.visible);
+    this.createPosterFormData.set(
+      'description',
+      this.createPosterForm.value.description
+    );
+    this.createPosterFormData.set(
+      'happensAt',
+      this.createPosterForm.value.happensAt
+    );
+    this.createPosterFormData.set(
+      'visible',
+      this.createPosterForm.value.visible
+    );
 
     this.posterService.createPoster(this.createPosterFormData).subscribe(
       (res: any) => {
@@ -163,8 +162,7 @@ export class APostersComponent implements OnInit {
         this.loadPosters();
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
-        this.previewPosterUrl = '';
-        this.previewPosterToCreate = false;
+        this.previewCreatePosterUrl = '';
       },
       error => {
         console.log(error);
@@ -175,15 +173,14 @@ export class APostersComponent implements OnInit {
         );
         this.createPosterForm.reset();
         this.createPosterFormData = new FormData();
-        this.previewPosterUrl = '';
-        this.previewPosterToCreate = false;
+        this.previewCreatePosterUrl = '';
       }
     );
   }
 
   // Table
 
-  onEditPosterModal(event) {
+  onEditPoster(event) {
     this.alertifyService.message('Ładuję...');
     this.posterService
       .getPoster(Number(event.data.id))
@@ -195,9 +192,9 @@ export class APostersComponent implements OnInit {
           visible: this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
           image: null
         });
-        this.modalService.open(this.editPosterModal, {
-          centered: true
-        });
+        this.previewEditPosterUrl =
+          this.rootUrl + this.selectedPoster.posterPhotoUrl;
+        this.showPosterDetails = true;
       });
   }
 
@@ -207,6 +204,12 @@ export class APostersComponent implements OnInit {
     }
 
     for (const file of event.target.files) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.previewEditPosterUrl = String(reader.result);
+      };
+
       this.editPosterFormData = new FormData();
       this.editPosterFormData.append(file.name, file);
       console.log(this.editPosterFormData);
@@ -215,8 +218,14 @@ export class APostersComponent implements OnInit {
 
   onPosterEditSubmit() {
     this.editPosterFormData.set('id', this.selectedPoster.id.toString());
-    this.editPosterFormData.set('description', this.editPosterForm.value.description);
-    this.editPosterFormData.set('happensAt', this.editPosterForm.value.happensAt);
+    this.editPosterFormData.set(
+      'description',
+      this.editPosterForm.value.description
+    );
+    this.editPosterFormData.set(
+      'happensAt',
+      this.editPosterForm.value.happensAt
+    );
     this.editPosterFormData.set('visible', this.editPosterForm.value.visible);
 
     this.posterService.updatePoster(this.editPosterFormData).subscribe(
@@ -224,7 +233,9 @@ export class APostersComponent implements OnInit {
         if (+res.status === 200) {
           this.loadPosters();
           this.alertifyService.success(
-            'Zaktualizowano plakat "' + this.editPosterForm.value.description + '"'
+            'Zaktualizowano plakat "' +
+              this.editPosterForm.value.description +
+              '"'
           );
         } else {
           this.alertifyService.error(
@@ -249,15 +260,8 @@ export class APostersComponent implements OnInit {
     );
   }
 
-  onPreviewPosterModal(event) {
-    this.posterService
-      .getPoster(Number(event.data.id))
-      .subscribe((res: any) => {
-        this.selectedPoster = res.body;
-        this.modalService.open(this.previewPosterModal, {
-          centered: true
-        });
-      });
+  closePosterDetails() {
+    this.showPosterDetails = false;
   }
 
   onDeletePosterModal(event) {
