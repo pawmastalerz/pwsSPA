@@ -32,7 +32,7 @@ export class APostersComponent implements OnInit {
       Validators.maxLength(200)
     ]),
     happensAt: new FormControl('', Validators.required),
-    visible: new FormControl('', Validators.required),
+    accepted: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
   createPosterFormData = new FormData();
@@ -44,7 +44,7 @@ export class APostersComponent implements OnInit {
       Validators.maxLength(200)
     ]),
     happensAt: new FormControl('', Validators.required),
-    visible: new FormControl('', Validators.required),
+    accepted: new FormControl('', Validators.required),
     image: new FormControl('')
   });
   editPosterFormData = new FormData();
@@ -61,10 +61,10 @@ export class APostersComponent implements OnInit {
           return formatted;
         }
       },
-      visible: {
-        title: 'Widoczność',
+      accepted: {
+        title: 'Akceptacja',
         valuePrepareFunction: value => {
-          return value === 1 ? 'Widoczny' : 'Ukryty';
+          return value === 1 ? 'Przyjęto' : 'Oczekuje';
         }
       }
     },
@@ -142,8 +142,8 @@ export class APostersComponent implements OnInit {
       this.createPosterForm.value.happensAt
     );
     this.createPosterFormData.set(
-      'visible',
-      this.createPosterForm.value.visible
+      'accepted',
+      this.createPosterForm.value.accepted
     );
 
     this.posterService.createPoster(this.createPosterFormData).subscribe(
@@ -189,7 +189,7 @@ export class APostersComponent implements OnInit {
         this.editPosterForm.setValue({
           description: this.selectedPoster.description,
           happensAt: this.selectedPoster.happensAt,
-          visible: this.selectedPoster.visible === 1 ? 'Widoczny' : 'Ukryty',
+          accepted: this.selectedPoster.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
           image: null
         });
         this.previewEditPosterUrl =
@@ -226,7 +226,7 @@ export class APostersComponent implements OnInit {
       'happensAt',
       this.editPosterForm.value.happensAt
     );
-    this.editPosterFormData.set('visible', this.editPosterForm.value.visible);
+    this.editPosterFormData.set('accepted', this.editPosterForm.value.accepted);
 
     this.posterService.updatePoster(this.editPosterFormData).subscribe(
       (res: any) => {

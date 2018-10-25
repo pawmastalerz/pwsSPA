@@ -2,6 +2,6 @@ export interface Thought {
   id: number;
   description: string;
   happensAt: Date;
-  visible: number;
+  accepted: number;
   thoughtPhotoUrl: string;
 }

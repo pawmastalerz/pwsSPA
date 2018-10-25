@@ -24,7 +24,7 @@ export class AThoughtsComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(200)
     ]),
-    visible: new FormControl('', Validators.required),
+    accepted: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
   createThoughtFormData = new FormData();
@@ -65,8 +65,8 @@ export class AThoughtsComponent implements OnInit {
       this.createThoughtForm.value.happensAt
     );
     this.createThoughtFormData.set(
-      'visible',
-      this.createThoughtForm.value.visible
+      'accepted',
+      this.createThoughtForm.value.accepted
     );
 
     this.thoughtService.createThought(this.createThoughtFormData).subscribe(
