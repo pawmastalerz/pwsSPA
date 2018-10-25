@@ -1,38 +1,128 @@
-<div class="mt-3">
-  <nb-card>
-    <nb-card-header>
-      Dodaj nową myśl:
-    </nb-card-header>
-    <nb-card-body>
+<!-- Modals -->
+
+<ng-template #deletePosterModal let-modal>
+    <div class="modal-body">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-6">
-            <form [formGroup]="createThoughtForm" class="mx-auto d-block">
-              <p class="mt-2 mt-sm-3">Opis:</p>
-              <textarea class="form-control" formControlName="description" rows="3" placeholder="(od 3 do 200 znaków)"></textarea>
-              <br>
-              <p>Plik</p>
-              <input type="file" formControlName="image" class="form-control-file" (change)="onSelectThoughtFile($event)"
-                accept="image/jpeg">
-              <br>
-              <p>Akceptacja:</p>
-              <select class="form-control" formControlName="accepted">
-                <option>Oczekuje</option>
-                <option>Przyjęto</option>
-              </select>
-              <br>
-            </form>
-          </div>
-          <div class="col-12 col-sm-6 text-center">
-            <img [src]="previewUrl" class="prev">
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary mt-2 mt-sm-3 pull-left" (click)="this.onSubmit()" [disabled]="createThoughtForm.invalid || createThoughtForm.pristine">
-              Dodaj nowy plakat
-            </button>
+          <div class="col text-center">
+            <p>Na pewno usunąć plakat "{{selectedPoster.description}}"?</p>
+            <p>
+              Tej operacji <strong class="text-danger"> nie da się cofnąć!</strong>
+            </p>
           </div>
         </div>
       </div>
-    </nb-card-body>
-  </nb-card>
-</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
+      <button type="button" class="btn btn-danger" (click)="onDeletePoster(); modal.close()">Usuń</button>
+    </div>
+  </ng-template>
+  
+  <!-- Code -->
+  
+  <div class="mt-3">
+    <nb-card>
+      <nb-card-header>
+        Dodaj nowy plakat:
+      </nb-card-header>
+      <nb-card-body>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form [formGroup]="createPosterForm" class="mx-auto d-block">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <p>Opis:</p>
+                    <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
+                    <br>
+                    <p>Data wydarzenia:</p>
+                    <input type="date" formControlName="happensAt" class="form-control">
+                    <br>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <p>Akceptacja:</p>
+                    <select class="form-control" formControlName="accepted">
+                      <option>Oczekuje</option>
+                      <option>Przyjęto</option>
+                    </select>
+                    <br>
+                    <p>Plik:</p>
+                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectPosterFile($event)"
+                      accept="image/jpeg" [ngStyle]="{'height': '38px'}">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="text-center">
+              <img [src]="previewCreatePosterUrl" class="my-2 my-sm-3 prev">
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success mt-2 mt-sm-3 pull-right" (click)="onPosterCreateSubmit()"
+                [disabled]="createPosterForm.invalid || createPosterForm.pristine">
+                Dodaj nowy plakat
+              </button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  
+    <nb-card>
+      <nb-card-header>
+        Plakaty w bazie danych:
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEditPoster($event)" (delete)="onDeletePosterModal($event)"></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  
+    <nb-card *ngIf="showPosterDetails">
+      <nb-card-header>
+        Szczegóły plakatu "{{selectedPoster.description}}"
+      </nb-card-header>
+      <nb-card-body>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form [formGroup]="editPosterForm" class="mx-auto d-block">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <p>Opis:</p>
+                    <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
+                    <br>
+                    <p>Data wydarzenia:</p>
+                    <input type="date" formControlName="happensAt" class="form-control" value="{{selectedPoster.happensAt | date : 'yyyy-MM-dd'}}">
+                    <br>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <p>Akceptacja:</p>
+                    <select class="form-control" formControlName="accepted">
+                      <option>Oczekuje</option>
+                      <option>Przyjęto</option>
+                    </select>
+                    <br>
+                    <p>Zmień obraz:</p>
+                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditPosterFile($event)"
+                      accept="image/jpeg">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="text-center">
+              <img [src]="previewEditPosterUrl" class="my-2 my-sm-3 prev">
+            </div>
+            <button type="button" class="btn btn-success mx-2 pull-right" (click)="closePosterDetails(); onPosterEditSubmit()"
+              [disabled]="editPosterForm.invalid || editPosterForm.pristine">Aktualizuj</button>
+            <div class="col-12">
+              <button type="button" class="btn btn-secondary mx-2 pull-right" (click)="closePosterDetails()">Anuluj</button>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>

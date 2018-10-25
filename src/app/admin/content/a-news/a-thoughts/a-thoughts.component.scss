@@ -1,0 +1,11 @@
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: none;
+}
+
+input {
+  height: 38px !important;
+}
+
+.prev {
+  max-height: 350px;
+}
