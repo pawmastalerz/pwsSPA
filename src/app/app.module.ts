@@ -21,7 +21,6 @@ import { PostersComponent } from './news/posters/posters.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { CommonModule } from '@angular/common';
     LoginComponent
   ],
   imports: [
-    CommonModule,
     AppRoutingModule,
     BrowserModule,
     NgbModule.forRoot(),
