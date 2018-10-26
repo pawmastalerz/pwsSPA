@@ -10,10 +10,7 @@ export class SharedNewsThoughtsComponent implements OnInit {
   images = [
     '../../../../assets/carousel/slider1.jpg',
     '../../../../assets/carousel/slider2.jpg',
-    '../../../../assets/carousel/slider3.jpg',
-    '../../../../assets/carousel/slider4.jpg',
-    '../../../../assets/carousel/slider5.jpg',
-    '../../../../assets/carousel/slider6.jpg',
+    '../../../../assets/carousel/slider3.jpg'
   ];
 
   constructor(config: NgbCarouselConfig) {

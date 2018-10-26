@@ -1,7 +1,8 @@
 export interface Thought {
   id: number;
-  description: string;
-  happensAt: Date;
+  quote: string;
+  author: string;
+  order: string;
   accepted: number;
   thoughtPhotoUrl: string;
 }

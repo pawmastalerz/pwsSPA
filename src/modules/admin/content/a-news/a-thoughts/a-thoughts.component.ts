@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { PosterService } from 'src/services/poster.service';
+import { ThoughtService } from 'src/services/thought.service';
 import { AuthService } from 'src/services/auth.service';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Poster } from 'src/models/Poster';
+import { Thought } from 'src/models/Thought';
 import { environment } from 'src/environments/environment';
 import { AlertifyService } from 'src/services/alertify.service';
 
@@ -15,51 +14,42 @@ import { AlertifyService } from 'src/services/alertify.service';
   styleUrls: ['./a-thoughts.component.scss']
 })
 export class AThoughtsComponent implements OnInit {
-  @ViewChild('deletePosterModal')
-  deletePosterModal: ElementRef;
+  @ViewChild('deleteThoughtModal')
+  deleteThoughtModal: ElementRef;
 
   rootUrl = environment.rootUrl;
 
-  selectedPoster: Poster;
-  previewCreatePosterUrl = '';
-  previewEditPosterUrl = '';
-  showPosterDetails = false;
+  selectedThought: Thought;
+  previewCreateThoughtUrl = '';
+  previewEditThoughtUrl = '';
+  showThoughtDetails = false;
 
-  createPosterForm = new FormGroup({
+  createThoughtForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(200)
     ]),
-    happensAt: new FormControl('', Validators.required),
     accepted: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
   });
-  createPosterFormData = new FormData();
+  createThoughtFormData = new FormData();
 
-  editPosterForm = new FormGroup({
+  editThoughtForm = new FormGroup({
     description: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(200)
     ]),
-    happensAt: new FormControl('', Validators.required),
     accepted: new FormControl('', Validators.required),
     image: new FormControl('')
   });
-  editPosterFormData = new FormData();
+  editThoughtFormData = new FormData();
 
   settings = {
     columns: {
       description: {
         title: 'Opis'
-      },
-      happensAt: {
-        title: 'Data',
-        valuePrepareFunction: value => {
-          const formatted = moment(value).format('DD-MM-YYYY');
-          return formatted;
-        }
       },
       accepted: {
         title: 'Akceptacja',
@@ -77,45 +67,44 @@ export class AThoughtsComponent implements OnInit {
       editButtonContent: '<i class="fa fa-edit"></i>'
     },
     delete: { deleteButtonContent: '<i class="fa fa-trash"></i>' },
-    filter: { inputClass: 'happensAt' },
-    noDataMessage: 'Nie znaleziono żadnych plakatów w bazie'
+    noDataMessage: 'Nie znaleziono żadnych myśli w bazie'
   };
 
   source: LocalDataSource;
 
   constructor(
-    private posterService: PosterService,
+    private thoughtService: ThoughtService,
     private authService: AuthService,
     private modalService: NgbModal,
     private alertifyService: AlertifyService
   ) {
     this.source = new LocalDataSource();
-    this.loadPosters();
+    this.loadThoughts();
   }
 
   ngOnInit() {}
 
-  loadPosters() {
+  loadThoughts() {
     if (this.authService.isAuthenticated) {
-      this.posterService.getAllPosters().subscribe(
+      this.thoughtService.getAllThoughts().subscribe(
         (res: any) => {
           if (+res.status === 200) {
             this.source.load(res.body);
           } else {
-            this.alertifyService.error('Błąd podczas ładowania listy plakatów');
+            this.alertifyService.error('Błąd podczas ładowania listy myśli');
           }
         },
         error => {
           console.log(error);
-          this.alertifyService.error('Błąd podczas ładowania listy plakatów');
+          this.alertifyService.error('Błąd podczas ładowania listy myśli');
         }
       );
     }
   }
 
-  // New poster
+  // New thought
 
-  onSelectPosterFile(event) {
+  onSelectThoughtFile(event) {
     if (event.target.files.length === 0) {
       return;
     }
@@ -124,81 +113,72 @@ export class AThoughtsComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.previewCreatePosterUrl = String(reader.result);
+        this.previewCreateThoughtUrl = String(reader.result);
       };
 
-      this.createPosterFormData = new FormData();
-      this.createPosterFormData.append(file.name, file);
+      this.createThoughtFormData = new FormData();
+      this.createThoughtFormData.append(file.name, file);
     }
   }
 
-  onPosterCreateSubmit() {
-    this.createPosterFormData.set(
+  onThoughtCreateSubmit() {
+    this.createThoughtFormData.set(
       'description',
-      this.createPosterForm.value.description
+      this.createThoughtForm.value.description
     );
-    this.createPosterFormData.set(
-      'happensAt',
-      this.createPosterForm.value.happensAt
-    );
-    this.createPosterFormData.set(
+    this.createThoughtFormData.set(
       'accepted',
-      this.createPosterForm.value.accepted
+      this.createThoughtForm.value.accepted
     );
 
-    this.posterService.createPoster(this.createPosterFormData).subscribe(
+    this.thoughtService.createThought(this.createThoughtFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
           this.alertifyService.success(
-            'Utworzono plakat "' + this.createPosterForm.value.description + '"'
+            'Utworzono myśl'
           );
         } else {
           this.alertifyService.error(
-            'Błąd przy tworzeniu plakatu "' +
-              this.createPosterForm.value.description +
-              '"'
+            'Błąd przy tworzeniu myśli'
           );
         }
-        this.loadPosters();
-        this.createPosterForm.reset();
-        this.createPosterFormData = new FormData();
-        this.previewCreatePosterUrl = '';
+        this.loadThoughts();
+        this.createThoughtForm.reset();
+        this.createThoughtFormData = new FormData();
+        this.previewCreateThoughtUrl = '';
       },
       error => {
         console.log(error);
         this.alertifyService.error(
-          'Błąd przy tworzeniu plakatu "' +
-            this.createPosterForm.value.description +
-            '"'
+          'Błąd przy tworzeniu myśli'
         );
-        this.createPosterForm.reset();
-        this.createPosterFormData = new FormData();
-        this.previewCreatePosterUrl = '';
+        this.createThoughtForm.reset();
+        this.createThoughtFormData = new FormData();
+        this.previewCreateThoughtUrl = '';
       }
     );
   }
 
   // Table
 
-  onEditPoster(event) {
+  onEditThought(event) {
     this.alertifyService.message('Ładuję...');
-    this.posterService
-      .getPoster(Number(event.data.id))
+    this.thoughtService
+      .getThought(Number(event.data.id))
       .subscribe((res: any) => {
-        this.selectedPoster = res.body;
-        this.editPosterForm.setValue({
-          description: this.selectedPoster.description,
-          happensAt: this.selectedPoster.happensAt,
-          accepted: this.selectedPoster.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
+        this.selectedThought = res.body;
+        this.editThoughtForm.setValue({
+          description: this.selectedThought.description,
+          accepted: this.selectedThought.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
           image: null
         });
-        this.previewEditPosterUrl =
-          this.rootUrl + this.selectedPoster.posterPhotoUrl;
-        this.showPosterDetails = true;
+        this.previewEditThoughtUrl =
+          this.rootUrl + this.selectedThought.thoughtPhotoUrl;
+        this.showThoughtDetails = true;
       });
   }
 
-  onSelectEditPosterFile(event) {
+  onSelectEditThoughtFile(event) {
     if (event.target.files.length === 0) {
       return;
     }
@@ -207,94 +187,82 @@ export class AThoughtsComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.previewEditPosterUrl = String(reader.result);
+        this.previewEditThoughtUrl = String(reader.result);
       };
 
-      this.editPosterFormData = new FormData();
-      this.editPosterFormData.append(file.name, file);
-      console.log(this.editPosterFormData);
+      this.editThoughtFormData = new FormData();
+      this.editThoughtFormData.append(file.name, file);
+      console.log(this.editThoughtFormData);
     }
   }
 
-  onPosterEditSubmit() {
-    this.editPosterFormData.set('id', this.selectedPoster.id.toString());
-    this.editPosterFormData.set(
+  onThoughtEditSubmit() {
+    this.editThoughtFormData.set('id', this.selectedThought.id.toString());
+    this.editThoughtFormData.set(
       'description',
-      this.editPosterForm.value.description
+      this.editThoughtForm.value.description
     );
-    this.editPosterFormData.set(
-      'happensAt',
-      this.editPosterForm.value.happensAt
-    );
-    this.editPosterFormData.set('accepted', this.editPosterForm.value.accepted);
+    this.editThoughtFormData.set('accepted', this.editThoughtForm.value.accepted);
 
-    this.posterService.updatePoster(this.editPosterFormData).subscribe(
+    this.thoughtService.updateThought(this.editThoughtFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
-          this.loadPosters();
+          this.loadThoughts();
           this.alertifyService.success(
-            'Zaktualizowano plakat "' +
-              this.editPosterForm.value.description +
-              '"'
+            'Zaktualizowano myśl'
           );
         } else {
           this.alertifyService.error(
-            'Błąd przy aktualizacji plakatu "' +
-              this.editPosterForm.value.description +
-              '"'
+            'Błąd przy aktualizacji myśli'
           );
         }
-        this.editPosterForm.reset();
-        this.editPosterFormData = new FormData();
+        this.editThoughtForm.reset();
+        this.editThoughtFormData = new FormData();
       },
       error => {
         console.log(error);
         this.alertifyService.error(
-          'Błąd przy aktualizacji plakatu "' +
-            this.editPosterForm.value.description +
-            '"'
+          'Błąd przy aktualizacji myśli'
         );
-        this.editPosterForm.reset();
-        this.editPosterFormData = new FormData();
+        this.editThoughtForm.reset();
+        this.editThoughtFormData = new FormData();
       }
     );
   }
 
-  closePosterDetails() {
-    this.showPosterDetails = false;
+  closeThoughtDetails() {
+    this.showThoughtDetails = false;
   }
 
-  onDeletePosterModal(event) {
-    this.posterService
-      .getPoster(Number(event.data.id))
+  onDeleteThoughtModal(event) {
+    this.thoughtService
+      .getThought(Number(event.data.id))
       .subscribe((res: any) => {
-        this.selectedPoster = res.body;
-        this.modalService.open(this.deletePosterModal, {
+        this.selectedThought = res.body;
+        this.modalService.open(this.deleteThoughtModal, {
           centered: true
         });
       });
   }
 
-  onDeletePoster() {
-    this.posterService.deletePoster(Number(this.selectedPoster.id)).subscribe(
+  onDeleteThought() {
+    this.thoughtService.deleteThought(Number(this.selectedThought.id)).subscribe(
       (res: any) => {
         if (+res.status === 200) {
           this.alertifyService.error(
-            'Usunięto plakat "' + this.selectedPoster.description + '"'
+            'Usunięto myśl'
           );
         } else {
           this.alertifyService.error(
-            'Błąd przy usuwaniu plakatu "' +
-              this.selectedPoster.description +
-              '"'
+            'Błąd przy usuwaniu myśli'
           );
         }
-        this.loadPosters();
+        this.loadThoughts();
       },
       error => {
         console.log(error);
         this.alertifyService.error(
-          'Błąd przy usuwaniu plakatu "' + this.selectedPoster.description + '"'
+          'Błąd przy usuwaniu myśli'
         );
       }
     );

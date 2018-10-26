@@ -1,11 +1,11 @@
 <!-- Modals -->
 
-<ng-template #deletePosterModal let-modal>
+<ng-template #deleteThoughtModal let-modal>
     <div class="modal-body">
       <div class="container">
         <div class="row">
           <div class="col text-center">
-            <p>Na pewno usunąć plakat "{{selectedPoster.description}}"?</p>
+            <p>Na pewno usunąć tę myśl?"?</p>
             <p>
               Tej operacji <strong class="text-danger"> nie da się cofnąć!</strong>
             </p>
@@ -15,7 +15,7 @@
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="modal.close()">Anuluj</button>
-      <button type="button" class="btn btn-danger" (click)="onDeletePoster(); modal.close()">Usuń</button>
+      <button type="button" class="btn btn-danger" (click)="onDeleteThought(); modal.close()">Usuń</button>
     </div>
   </ng-template>
   
@@ -24,20 +24,17 @@
   <div class="mt-3">
     <nb-card>
       <nb-card-header>
-        Dodaj nowy plakat:
+        Dodaj nową myśl:
       </nb-card-header>
       <nb-card-body>
         <div class="container">
           <div class="row">
             <div class="col">
-              <form [formGroup]="createPosterForm" class="mx-auto d-block">
+              <form [formGroup]="createThoughtForm" class="mx-auto d-block">
                 <div class="row">
                   <div class="col-12 col-sm-6">
                     <p>Opis:</p>
-                    <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
-                    <br>
-                    <p>Data wydarzenia:</p>
-                    <input type="date" formControlName="happensAt" class="form-control">
+                    <textarea type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control" rows="5"></textarea>
                     <br>
                   </div>
                   <div class="col-12 col-sm-6">
@@ -48,7 +45,7 @@
                     </select>
                     <br>
                     <p>Plik:</p>
-                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectPosterFile($event)"
+                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectThoughtFile($event)"
                       accept="image/jpeg" [ngStyle]="{'height': '38px'}">
                   </div>
                 </div>
@@ -57,12 +54,12 @@
           </div>
           <div class="col-12">
             <div class="text-center">
-              <img [src]="previewCreatePosterUrl" class="my-2 my-sm-3 prev">
+              <img [src]="previewCreateThoughtUrl" class="my-2 my-sm-3 prev">
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-success mt-2 mt-sm-3 pull-right" (click)="onPosterCreateSubmit()"
-                [disabled]="createPosterForm.invalid || createPosterForm.pristine">
-                Dodaj nowy plakat
+              <button type="submit" class="btn btn-success mt-2 mt-sm-3 pull-right" (click)="onThoughtCreateSubmit()"
+                [disabled]="createThoughtForm.invalid || createThoughtForm.pristine">
+                Dodaj nową myśl
               </button>
             </div>
           </div>
@@ -72,29 +69,29 @@
   
     <nb-card>
       <nb-card-header>
-        Plakaty w bazie danych:
+        Myśli w bazie danych:
       </nb-card-header>
       <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEditPoster($event)" (delete)="onDeletePosterModal($event)"></ng2-smart-table>
+        <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEditThought($event)" (delete)="onDeleteThoughtModal($event)"></ng2-smart-table>
       </nb-card-body>
     </nb-card>
   
-    <nb-card *ngIf="showPosterDetails">
+    <nb-card *ngIf="showThoughtDetails">
       <nb-card-header>
-        Szczegóły plakatu "{{selectedPoster.description}}"
+        Szczegóły myśli:
       </nb-card-header>
       <nb-card-body>
         <div class="container">
           <div class="row">
             <div class="col">
-              <form [formGroup]="editPosterForm" class="mx-auto d-block">
+              <form [formGroup]="editThoughtForm" class="mx-auto d-block">
                 <div class="row">
                   <div class="col-12 col-sm-6">
                     <p>Opis:</p>
                     <input type="text" formControlName="description" placeholder="(od 3 do 200 znaków)" class="form-control">
                     <br>
                     <p>Data wydarzenia:</p>
-                    <input type="date" formControlName="happensAt" class="form-control" value="{{selectedPoster.happensAt | date : 'yyyy-MM-dd'}}">
+                    <input type="date" formControlName="happensAt" class="form-control" value="{{selectedThought.happensAt | date : 'yyyy-MM-dd'}}">
                     <br>
                   </div>
                   <div class="col-12 col-sm-6">
@@ -105,7 +102,7 @@
                     </select>
                     <br>
                     <p>Zmień obraz:</p>
-                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditPosterFile($event)"
+                    <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditThoughtFile($event)"
                       accept="image/jpeg">
                   </div>
                 </div>
@@ -114,12 +111,12 @@
           </div>
           <div class="col-12">
             <div class="text-center">
-              <img [src]="previewEditPosterUrl" class="my-2 my-sm-3 prev">
+              <img [src]="previewEditThoughtUrl" class="my-2 my-sm-3 prev">
             </div>
-            <button type="button" class="btn btn-success mx-2 pull-right" (click)="closePosterDetails(); onPosterEditSubmit()"
-              [disabled]="editPosterForm.invalid || editPosterForm.pristine">Aktualizuj</button>
+            <button type="button" class="btn btn-success mx-2 pull-right" (click)="closeThoughtDetails(); onThoughtEditSubmit()"
+              [disabled]="editThoughtForm.invalid || editThoughtForm.pristine">Aktualizuj</button>
             <div class="col-12">
-              <button type="button" class="btn btn-secondary mx-2 pull-right" (click)="closePosterDetails()">Anuluj</button>
+              <button type="button" class="btn btn-secondary mx-2 pull-right" (click)="closeThoughtDetails()">Anuluj</button>
             </div>
           </div>
         </div>
@@ -128,10 +125,10 @@
   
     <nb-card>
       <nb-card-header>
-        Plakaty na stronie:
+        Myśli na stronie:
       </nb-card-header>
       <nb-card-body>
-        <app-shared-news-posters></app-shared-news-posters>
+        <app-shared-news-thoughts></app-shared-news-thoughts>
       </nb-card-body>
     </nb-card>
   
