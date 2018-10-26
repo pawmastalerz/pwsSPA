@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewsCarouselComponent } from './news-carousel.component';
+import { SharedNewsThoughtsComponent } from './shared-news-thoughts.component';
 
-describe('NewsCarouselComponent', () => {
-  let component: NewsCarouselComponent;
-  let fixture: ComponentFixture<NewsCarouselComponent>;
+describe('SharedNewsThoughtsComponent', () => {
+  let component: SharedNewsThoughtsComponent;
+  let fixture: ComponentFixture<SharedNewsThoughtsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsCarouselComponent ]
+      declarations: [ SharedNewsThoughtsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewsCarouselComponent);
+    fixture = TestBed.createComponent(SharedNewsThoughtsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,7 +17,6 @@ import { TeamComponent } from './team/team.component';
 import { VisitorsComponent } from './visitors/visitors.component';
 import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
-import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { TokenInterceptor } from 'src/interceptors/token.interceptor';
@@ -35,7 +34,6 @@ import { TokenInterceptor } from 'src/interceptors/token.interceptor';
     VisitorsComponent,
     SkirtchatComponent,
     ContactComponent,
-    NewsCarouselComponent,
     LoginComponent
   ],
   imports: [

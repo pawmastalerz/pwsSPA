@@ -1,0 +1,25 @@
+<div class="container mt-sm-3 mt-md-5 px-0">
+  <ngb-carousel class="carousel" *ngIf="images">
+    <ng-template ngbSlide>
+      <img [src]="images[0]">
+      <div class="carousel-caption">
+        <h3>Tytuł 1</h3>
+        <p>Opis 1</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[1]">
+      <div class="carousel-caption">
+        <h3>Tytuł 2</h3>
+        <p>Opis 2</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[2]">
+      <div class="carousel-caption">
+        <h3>Tytuł 3</h3>
+        <p>Opis 3</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
