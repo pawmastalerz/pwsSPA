@@ -25,8 +25,12 @@ export class AThoughtsComponent implements OnInit {
   showThoughtDetails = false;
 
   createThoughtForm = new FormGroup({
-    description: new FormControl('', [
+    quote: new FormControl('', [
       Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(200)
+    ]),
+    author: new FormControl('', [
       Validators.minLength(3),
       Validators.maxLength(200)
     ]),
@@ -36,8 +40,12 @@ export class AThoughtsComponent implements OnInit {
   createThoughtFormData = new FormData();
 
   editThoughtForm = new FormGroup({
-    description: new FormControl('', [
+    quote: new FormControl('', [
       Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(200)
+    ]),
+    author: new FormControl('', [
       Validators.minLength(3),
       Validators.maxLength(200)
     ]),
@@ -48,8 +56,11 @@ export class AThoughtsComponent implements OnInit {
 
   settings = {
     columns: {
-      description: {
-        title: 'Opis'
+      quote: {
+        title: 'Cytat'
+      },
+      author: {
+        title: 'Autor'
       },
       accepted: {
         title: 'Akceptacja',
@@ -123,8 +134,12 @@ export class AThoughtsComponent implements OnInit {
 
   onThoughtCreateSubmit() {
     this.createThoughtFormData.set(
-      'description',
-      this.createThoughtForm.value.description
+      'quote',
+      this.createThoughtForm.value.quote
+    );
+    this.createThoughtFormData.set(
+      'author',
+      this.createThoughtForm.value.author
     );
     this.createThoughtFormData.set(
       'accepted',
@@ -168,7 +183,8 @@ export class AThoughtsComponent implements OnInit {
       .subscribe((res: any) => {
         this.selectedThought = res.body;
         this.editThoughtForm.setValue({
-          description: this.selectedThought.description,
+          quote: this.selectedThought.quote,
+          author: this.selectedThought.author,
           accepted: this.selectedThought.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
           image: null
         });
@@ -199,8 +215,12 @@ export class AThoughtsComponent implements OnInit {
   onThoughtEditSubmit() {
     this.editThoughtFormData.set('id', this.selectedThought.id.toString());
     this.editThoughtFormData.set(
-      'description',
-      this.editThoughtForm.value.description
+      'quote',
+      this.editThoughtForm.value.quote
+    );
+    this.editThoughtFormData.set(
+      'author',
+      this.editThoughtForm.value.author
     );
     this.editThoughtFormData.set('accepted', this.editThoughtForm.value.accepted);
 
