@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { ActivateAuthGuardService } from '../services/activate-auth-guard.service';
-import { DeactivateAuthGuardService } from '../services/deactivate-auth-guard.service';
 
 import { NewsComponent } from './news/news.component';
 import { AboutComponent } from './about/about.component';
@@ -28,7 +27,6 @@ export const appRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [ActivateAuthGuardService],
-    canDeactivate: [DeactivateAuthGuardService],
     children: [
       {
         path: 'home',

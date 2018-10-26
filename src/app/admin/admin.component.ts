@@ -13,9 +13,4 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
   }
 
-  canDeactivate() {
-    console.log('Allowing cancellation...');
-    return true;
-  }
-
 }

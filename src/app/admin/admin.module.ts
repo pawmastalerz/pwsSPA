@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -27,6 +28,7 @@ import { AThoughtsComponent } from './content/a-news/a-thoughts/a-thoughts.compo
 @NgModule({
   imports: [
     CommonModule,
+    AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
     NgbModule,
