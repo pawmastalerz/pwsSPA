@@ -1,5 +1,5 @@
-import { SharedModule } from './shared/shared.module';
-import { AdminModule } from './admin/admin.module';
+import { SharedModule } from '../shared/shared.module';
+import { AdminModule } from '../admin/admin.module';
 import { NbThemeModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,8 +19,9 @@ import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
 import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
 import { LoginComponent } from './login/login.component';
-import { AppRoutingModule } from './app-routing.module';
-import { TokenInterceptor } from '../interceptors/token.interceptor';
+import { AppRoutingModule } from '../routing/app-routing.module';
+import { TokenInterceptor } from 'src/interceptors/token.interceptor';
+
 
 @NgModule({
   declarations: [

@@ -1,18 +1,17 @@
 import { Routes } from '@angular/router';
-import { ActivateAuthGuardService } from '../services/activate-auth-guard.service';
 
-import { NewsComponent } from './news/news.component';
-import { AboutComponent } from './about/about.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { TeamComponent } from './team/team.component';
-import { VisitorsComponent } from './visitors/visitors.component';
-import { SkirtchatComponent } from './skirtchat/skirtchat.component';
-import { ContactComponent } from './contact/contact.component';
-import { LoginComponent } from './login/login.component';
-
-import { AdminComponent } from './admin/admin.component';
-import { HomeComponent } from './admin/content/home/home.component';
-import { ANewsComponent } from './admin/content/a-news/a-news.component';
+import { NewsComponent } from '../app/news/news.component';
+import { AboutComponent } from '../app/about/about.component';
+import { GalleryComponent } from '../app/gallery/gallery.component';
+import { TeamComponent } from '../app/team/team.component';
+import { VisitorsComponent } from '../app/visitors/visitors.component';
+import { SkirtchatComponent } from '../app/skirtchat/skirtchat.component';
+import { ContactComponent } from '../app/contact/contact.component';
+import { LoginComponent } from '../app/login/login.component';
+import { AdminComponent } from '../admin/admin.component';
+import { ActivateAuthGuardService } from 'src/services/activate-auth-guard.service';
+import { HomeComponent } from '../admin/content/home/home.component';
+import { ANewsComponent } from '../admin/content/a-news/a-news.component';
 
 export const appRoutes: Routes = [
   { path: 'oprojekcie', component: AboutComponent },

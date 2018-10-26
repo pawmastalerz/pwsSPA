@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './../app-routing.module';
+import { AppRoutingModule } from '../routing/app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
