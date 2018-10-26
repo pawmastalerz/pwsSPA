@@ -24,11 +24,13 @@ import { HomeComponent } from './content/home/home.component';
 import { ANewsComponent } from './content/a-news/a-news.component';
 import { APostersComponent } from './content/a-news/a-posters/a-posters.component';
 import { AThoughtsComponent } from './content/a-news/a-thoughts/a-thoughts.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
+    SharedModule,
     RouterModule,
     ReactiveFormsModule,
     NgbModule,

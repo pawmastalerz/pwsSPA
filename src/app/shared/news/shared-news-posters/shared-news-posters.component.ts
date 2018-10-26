@@ -1,14 +1,15 @@
-import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Poster } from 'src/models/Poster';
+import { environment } from 'src/environments/environment';
 import { PosterService } from 'src/services/poster.service';
 
 @Component({
-  selector: 'app-posters',
-  templateUrl: './posters.component.html',
-  styleUrls: ['./posters.component.scss']
+  selector: 'app-shared-news-posters',
+  templateUrl: './shared-news-posters.component.html',
+  styleUrls: ['./shared-news-posters.component.scss']
 })
-export class PostersComponent implements OnInit {
+export class SharedNewsPostersComponent implements OnInit {
+
   posters: Poster[];
   rootUrl = environment.rootUrl;
 
@@ -26,4 +27,5 @@ export class PostersComponent implements OnInit {
       console.log(error);
     });
   }
+
 }

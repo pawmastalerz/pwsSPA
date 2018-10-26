@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { AdminModule } from './admin/admin.module';
 import { NbThemeModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +18,6 @@ import { VisitorsComponent } from './visitors/visitors.component';
 import { SkirtchatComponent } from './skirtchat/skirtchat.component';
 import { ContactComponent } from './contact/contact.component';
 import { NewsCarouselComponent } from './news/news-carousel/news-carousel.component';
-import { PostersComponent } from './news/posters/posters.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
@@ -35,11 +35,11 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     SkirtchatComponent,
     ContactComponent,
     NewsCarouselComponent,
-    PostersComponent,
     LoginComponent
   ],
   imports: [
     AppRoutingModule,
+    SharedModule,
     BrowserModule,
     NgbModule.forRoot(),
     HttpClientModule,
@@ -49,7 +49,6 @@ import { TokenInterceptor } from '../interceptors/token.interceptor';
     NbMenuModule.forRoot(),
     NbSidebarModule.forRoot()
   ],
-  exports: [PostersComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
