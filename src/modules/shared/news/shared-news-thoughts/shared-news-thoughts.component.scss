@@ -6,12 +6,31 @@
 }
 .carousel-caption {
   color: white;
-  font-family: 'Charmonman', cursive;
-  text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
+  text-shadow: 3px 3px 5px black;
+  // text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
   h3 {
-    font-size: 2.5rem;
+    font-family: 'Charmonman', cursive;
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 40px;
   }
   p {
-    font-size: 1.3rem;
+    font-family: 'Charmonman', cursive;
+    font-size: 18px;
+    font-weight: 900;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .carousel-caption {
+    h3 {
+      font-size: 40px;
+      font-weight: 900;
+      text-align: justify;
+    }
+    p {
+      font-size: 25px;
+      font-weight: 900;
+    }
   }
 }
