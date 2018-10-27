@@ -23,6 +23,7 @@ export class AThoughtsComponent implements OnInit {
   previewCreateThoughtUrl = '';
   previewEditThoughtUrl = '';
   showThoughtDetails = false;
+  showThoughtsOnSite = true;
 
   createThoughtForm = new FormGroup({
     quote: new FormControl('', [
@@ -104,10 +105,18 @@ export class AThoughtsComponent implements OnInit {
           } else {
             this.alertifyService.error('Błąd podczas ładowania listy myśli');
           }
+          this.showThoughtsOnSite = false;
+          setTimeout(() => {
+            this.showThoughtsOnSite = true;
+          }, 300);
         },
         error => {
           console.log(error);
           this.alertifyService.error('Błąd podczas ładowania listy myśli');
+          this.showThoughtsOnSite = false;
+          setTimeout(() => {
+            this.showThoughtsOnSite = true;
+          }, 300);
         }
       );
     }
@@ -133,10 +142,7 @@ export class AThoughtsComponent implements OnInit {
   }
 
   onThoughtCreateSubmit() {
-    this.createThoughtFormData.set(
-      'quote',
-      this.createThoughtForm.value.quote
-    );
+    this.createThoughtFormData.set('quote', this.createThoughtForm.value.quote);
     this.createThoughtFormData.set(
       'author',
       this.createThoughtForm.value.author
@@ -149,13 +155,9 @@ export class AThoughtsComponent implements OnInit {
     this.thoughtService.createThought(this.createThoughtFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
-          this.alertifyService.success(
-            'Utworzono myśl'
-          );
+          this.alertifyService.success('Utworzono myśl');
         } else {
-          this.alertifyService.error(
-            'Błąd przy tworzeniu myśli'
-          );
+          this.alertifyService.error('Błąd przy tworzeniu myśli');
         }
         this.loadThoughts();
         this.createThoughtForm.reset();
@@ -164,9 +166,7 @@ export class AThoughtsComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.alertifyService.error(
-          'Błąd przy tworzeniu myśli'
-        );
+        this.alertifyService.error('Błąd przy tworzeniu myśli');
         this.createThoughtForm.reset();
         this.createThoughtFormData = new FormData();
         this.previewCreateThoughtUrl = '';
@@ -185,7 +185,8 @@ export class AThoughtsComponent implements OnInit {
         this.editThoughtForm.setValue({
           quote: this.selectedThought.quote,
           author: this.selectedThought.author,
-          accepted: this.selectedThought.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
+          accepted:
+            this.selectedThought.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
           image: null
         });
         this.previewEditThoughtUrl =
@@ -214,36 +215,27 @@ export class AThoughtsComponent implements OnInit {
 
   onThoughtEditSubmit() {
     this.editThoughtFormData.set('id', this.selectedThought.id.toString());
+    this.editThoughtFormData.set('quote', this.editThoughtForm.value.quote);
+    this.editThoughtFormData.set('author', this.editThoughtForm.value.author);
     this.editThoughtFormData.set(
-      'quote',
-      this.editThoughtForm.value.quote
+      'accepted',
+      this.editThoughtForm.value.accepted
     );
-    this.editThoughtFormData.set(
-      'author',
-      this.editThoughtForm.value.author
-    );
-    this.editThoughtFormData.set('accepted', this.editThoughtForm.value.accepted);
 
     this.thoughtService.updateThought(this.editThoughtFormData).subscribe(
       (res: any) => {
         if (+res.status === 200) {
           this.loadThoughts();
-          this.alertifyService.success(
-            'Zaktualizowano myśl'
-          );
+          this.alertifyService.success('Zaktualizowano myśl');
         } else {
-          this.alertifyService.error(
-            'Błąd przy aktualizacji myśli'
-          );
+          this.alertifyService.error('Błąd przy aktualizacji myśli');
         }
         this.editThoughtForm.reset();
         this.editThoughtFormData = new FormData();
       },
       error => {
         console.log(error);
-        this.alertifyService.error(
-          'Błąd przy aktualizacji myśli'
-        );
+        this.alertifyService.error('Błąd przy aktualizacji myśli');
         this.editThoughtForm.reset();
         this.editThoughtFormData = new FormData();
       }
@@ -266,25 +258,21 @@ export class AThoughtsComponent implements OnInit {
   }
 
   onDeleteThought() {
-    this.thoughtService.deleteThought(Number(this.selectedThought.id)).subscribe(
-      (res: any) => {
-        if (+res.status === 200) {
-          this.alertifyService.error(
-            'Usunięto myśl'
-          );
-        } else {
-          this.alertifyService.error(
-            'Błąd przy usuwaniu myśli'
-          );
+    this.thoughtService
+      .deleteThought(Number(this.selectedThought.id))
+      .subscribe(
+        (res: any) => {
+          if (+res.status === 200) {
+            this.alertifyService.error('Usunięto myśl');
+          } else {
+            this.alertifyService.error('Błąd przy usuwaniu myśli');
+          }
+          this.loadThoughts();
+        },
+        error => {
+          console.log(error);
+          this.alertifyService.error('Błąd przy usuwaniu myśli');
         }
-        this.loadThoughts();
-      },
-      error => {
-        console.log(error);
-        this.alertifyService.error(
-          'Błąd przy usuwaniu myśli'
-        );
-      }
-    );
+      );
   }
 }

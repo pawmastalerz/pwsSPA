@@ -15,7 +15,7 @@ export class SharedNewsThoughtsComponent implements OnInit {
 
   constructor(
     config: NgbCarouselConfig,
-    private thoughtService: ThoughtService
+    private thoughtService: ThoughtService,
   ) {
     config.interval = 6000;
     config.wrap = true;

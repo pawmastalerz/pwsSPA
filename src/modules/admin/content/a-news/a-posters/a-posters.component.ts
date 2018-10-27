@@ -24,6 +24,7 @@ export class APostersComponent implements OnInit {
   previewCreatePosterUrl = '';
   previewEditPosterUrl = '';
   showPosterDetails = false;
+  showPostersOnSite = true;
 
   createPosterForm = new FormGroup({
     description: new FormControl('', [
@@ -104,8 +105,16 @@ export class APostersComponent implements OnInit {
           } else {
             this.alertifyService.error('Błąd podczas ładowania listy plakatów');
           }
+          this.showPostersOnSite = false;
+          setTimeout(() => {
+            this.showPostersOnSite = true;
+          }, 300);
         },
         error => {
+          this.showPostersOnSite = false;
+          setTimeout(() => {
+            this.showPostersOnSite = true;
+          }, 300);
           console.log(error);
           this.alertifyService.error('Błąd podczas ładowania listy plakatów');
         }
