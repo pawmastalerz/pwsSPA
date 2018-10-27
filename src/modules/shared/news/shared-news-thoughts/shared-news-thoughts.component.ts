@@ -1,13 +1,13 @@
 import { ThoughtService } from 'src/services/thought.service';
 import { Thought } from 'src/models/Thought';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shared-news-thoughts',
   templateUrl: './shared-news-thoughts.component.html',
-  styleUrls: ['./shared-news-thoughts.component.scss']
+  styleUrls: ['./shared-news-thoughts.component.scss'],
 })
 export class SharedNewsThoughtsComponent implements OnInit {
   thoughts: Thought[];

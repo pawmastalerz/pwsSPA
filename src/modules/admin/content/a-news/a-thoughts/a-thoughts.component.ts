@@ -29,11 +29,11 @@ export class AThoughtsComponent implements OnInit {
     quote: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(200)
+      Validators.maxLength(150)
     ]),
     author: new FormControl('', [
       Validators.minLength(3),
-      Validators.maxLength(200)
+      Validators.maxLength(50)
     ]),
     accepted: new FormControl('', Validators.required),
     image: new FormControl('', Validators.required)
@@ -44,11 +44,11 @@ export class AThoughtsComponent implements OnInit {
     quote: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(200)
+      Validators.maxLength(150)
     ]),
     author: new FormControl('', [
       Validators.minLength(3),
-      Validators.maxLength(200)
+      Validators.maxLength(50)
     ]),
     accepted: new FormControl('', Validators.required),
     image: new FormControl('')

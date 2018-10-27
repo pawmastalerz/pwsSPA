@@ -4,3 +4,14 @@
     background-size: cover;
   }
 }
+.carousel-caption {
+  color: white;
+  font-family: 'Charmonman', cursive;
+  text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
+  h3 {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+}
