@@ -22,6 +22,7 @@ export class SharedNewsPostersComponent implements OnInit {
   loadPosters() {
     this.eventService.getNewsEvents().subscribe((res: any) => {
       this.events = res.body;
+      console.log(this.events);
       // console.log(+res.status);
     }, error => {
       console.log(error);

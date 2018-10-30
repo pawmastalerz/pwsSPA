@@ -21,9 +21,8 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
-import { ANewsComponent } from './content/a-news/a-news.component';
-import { AThoughtsComponent } from './content/a-news/a-thoughts/a-thoughts.component';
 import { SharedModule } from '../shared/shared.module';
+import { AThoughtsComponent } from './content/a-thoughts/a-thoughts.component';
 
 @NgModule({
   imports: [
@@ -48,7 +47,6 @@ import { SharedModule } from '../shared/shared.module';
     SidebarComponent,
     ContentComponent,
     HomeComponent,
-    ANewsComponent,
     AThoughtsComponent,
   ],
   providers: [NbSidebarService],

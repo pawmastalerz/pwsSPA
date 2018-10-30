@@ -11,7 +11,7 @@ import { LoginComponent } from '../app/login/login.component';
 import { AdminComponent } from '../admin/admin.component';
 import { ActivateAuthGuardService } from 'src/services/activate-auth-guard.service';
 import { HomeComponent } from '../admin/content/home/home.component';
-import { ANewsComponent } from '../admin/content/a-news/a-news.component';
+import { AThoughtsComponent } from '../admin/content/a-thoughts/a-thoughts.component';
 
 export const appRoutes: Routes = [
   { path: 'oprojekcie', component: AboutComponent },
@@ -32,8 +32,8 @@ export const appRoutes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'news',
-        component: ANewsComponent
+        path: 'thoughts',
+        component: AThoughtsComponent
       },
       {
         path: '**',

@@ -13,8 +13,8 @@ export class SidebarComponent implements OnInit {
       link: '/admin/home'
     },
     {
-      title: 'Aktualności',
-      link: '/admin/news'
+      title: 'Myśli',
+      link: '/admin/thoughts'
     }
   ];
 
