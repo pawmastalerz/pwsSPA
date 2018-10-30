@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Poster } from 'src/models/Poster';
+import { Event } from 'src/models/Event';
 import { environment } from 'src/environments/environment';
-import { PosterService } from 'src/services/poster.service';
+import { EventService } from 'src/services/event.service';
 
 @Component({
   selector: 'app-shared-news-posters',
@@ -10,18 +10,18 @@ import { PosterService } from 'src/services/poster.service';
 })
 export class SharedNewsPostersComponent implements OnInit {
 
-  posters: Poster[];
+  events: Event[];
   rootUrl = environment.rootUrl;
 
-  constructor(private posterService: PosterService) {}
+  constructor(private eventService: EventService) {}
 
   ngOnInit() {
     this.loadPosters();
   }
 
   loadPosters() {
-    this.posterService.getNewsPosters().subscribe((res: any) => {
-      this.posters = res.body;
+    this.eventService.getNewsEvents().subscribe((res: any) => {
+      this.events = res.body;
       // console.log(+res.status);
     }, error => {
       console.log(error);

@@ -22,7 +22,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
 import { ANewsComponent } from './content/a-news/a-news.component';
-import { APostersComponent } from './content/a-news/a-posters/a-posters.component';
 import { AThoughtsComponent } from './content/a-news/a-thoughts/a-thoughts.component';
 import { SharedModule } from '../shared/shared.module';
 
@@ -50,7 +49,6 @@ import { SharedModule } from '../shared/shared.module';
     ContentComponent,
     HomeComponent,
     ANewsComponent,
-    APostersComponent,
     AThoughtsComponent,
   ],
   providers: [NbSidebarService],
