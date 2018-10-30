@@ -12,6 +12,7 @@ import { AdminComponent } from '../admin/admin.component';
 import { ActivateAuthGuardService } from 'src/services/activate-auth-guard.service';
 import { HomeComponent } from '../admin/content/home/home.component';
 import { AThoughtsComponent } from '../admin/content/a-thoughts/a-thoughts.component';
+import { AEventsComponent } from '../admin/content/a-events/a-events.component';
 
 export const appRoutes: Routes = [
   { path: 'oprojekcie', component: AboutComponent },
@@ -28,11 +29,15 @@ export const appRoutes: Routes = [
     canActivate: [ActivateAuthGuardService],
     children: [
       {
-        path: 'home',
+        path: 'glowna',
         component: HomeComponent
       },
       {
-        path: 'thoughts',
+        path: 'wydarzenia',
+        component: AEventsComponent
+      },
+      {
+        path: 'mysli',
         component: AThoughtsComponent
       },
       {

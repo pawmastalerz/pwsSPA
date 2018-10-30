@@ -10,11 +10,15 @@ export class SidebarComponent implements OnInit {
   items: NbMenuItem[] = [
     {
       title: 'Raport',
-      link: '/admin/home'
+      link: '/admin/glowna'
+    },
+    {
+      title: 'Wydarzenia',
+      link: '/admin/wydarzenia'
     },
     {
       title: 'Myśli',
-      link: '/admin/thoughts'
+      link: '/admin/mysli'
     }
   ];
 

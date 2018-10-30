@@ -23,6 +23,7 @@ import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { AThoughtsComponent } from './content/a-thoughts/a-thoughts.component';
+import { AEventsComponent } from './content/a-events/a-events.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { AThoughtsComponent } from './content/a-thoughts/a-thoughts.component';
     ContentComponent,
     HomeComponent,
     AThoughtsComponent,
+    AEventsComponent,
   ],
   providers: [NbSidebarService],
   exports: [AdminComponent]
