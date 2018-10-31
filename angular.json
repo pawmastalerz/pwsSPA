@@ -26,10 +26,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css","node_modules/@nebular/theme/styles/prebuilt/cosmic.css",
               "node_modules/alertifyjs/build/css/alertify.min.css",
-              "node_modules/alertifyjs/build/css/themes/default.min.css"
+              "node_modules/alertifyjs/build/css/themes/default.min.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/alertifyjs/build/alertify.min.js"
