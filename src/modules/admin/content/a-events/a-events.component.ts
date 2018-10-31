@@ -32,6 +32,11 @@ export class AEventsComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(150)
     ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(600)
+    ]),
     happensAt: new FormControl('', Validators.required),
     signUpLink: new FormControl('', [
       Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'),
@@ -48,6 +53,11 @@ export class AEventsComponent implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(150)
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(600)
     ]),
     happensAt: new FormControl('', Validators.required),
     signUpLink: new FormControl('', [
@@ -159,6 +169,10 @@ export class AEventsComponent implements OnInit {
       this.createEventForm.value.eventName
     );
     this.createEventFormData.set(
+      'description',
+      this.createEventForm.value.description
+    );
+    this.createEventFormData.set(
       'happensAt',
       this.createEventForm.value.happensAt
     );
@@ -201,6 +215,7 @@ export class AEventsComponent implements OnInit {
       this.selectedEvent = res.body;
       this.editEventForm.setValue({
         eventName: this.selectedEvent.eventName,
+        description: this.selectedEvent.description,
         happensAt: this.selectedEvent.happensAt,
         signUpLink: this.selectedEvent.signUpLink,
         accepted: this.selectedEvent.accepted === 1 ? 'Przyjęto' : 'Oczekuje',
@@ -235,6 +250,7 @@ export class AEventsComponent implements OnInit {
   onEventEditSubmit() {
     this.editEventFormData.set('eventId', this.selectedEvent.eventId.toString());
     this.editEventFormData.set('eventName', this.editEventForm.value.eventName);
+    this.editEventFormData.set('description', this.editEventForm.value.description);
     this.editEventFormData.set('happensAt', this.editEventForm.value.happensAt);
     this.editEventFormData.set(
       'signUpLink',

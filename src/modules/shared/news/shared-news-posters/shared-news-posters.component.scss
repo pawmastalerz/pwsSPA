@@ -2,13 +2,16 @@
   align-content: space-between;
   .card-img-top {
     border: 1px solid grey;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
   }
   .card-body {
-    h5 {
-      color: black;
+    white-space: pre-line;
+    .card-text {
+      p {
+        color: black;
+      }
     }
-    p {
+    h5 {
       color: black;
     }
   }
