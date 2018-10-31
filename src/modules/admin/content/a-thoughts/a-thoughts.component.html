@@ -113,7 +113,7 @@
                       <br>
                       <p>Zmień obraz:</p>
                       <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditThoughtFile($event)"
-                        accept="image/jpeg">
+                        accept="image/jpeg" [ngStyle]="{'height': '38px'}">
                     </div>
                   </div>
                 </form>
