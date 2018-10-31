@@ -57,7 +57,8 @@
                       </div>
                       <div class="col-12 col-sm-6">
                         <p>Krótki opis:</p>
-                        <textarea formControlName="description" class="form-control" placeholder="(wymagane - od 3 do 600 znaków)" rows="5" [ngStyle]="{'height': '320px'}"></textarea>
+                        <textarea formControlName="description" class="form-control" placeholder="(wymagane - od 3 do 600 znaków)"
+                          rows="5" [ngStyle]="{'height': '320px'}"></textarea>
                         <br>
                       </div>
                     </div>
@@ -112,8 +113,7 @@
                       <br>
                       <p>Link do zapisów:</p>
                       <input type="text" formControlName="signUpLink" class="form-control" placeholder="(wymagane - URL)">
-                    </div>
-                    <div class="col-12 col-sm-6">
+                      <br>
                       <p>Akceptacja:</p>
                       <select class="form-control" formControlName="accepted">
                         <option>Oczekuje</option>
@@ -123,6 +123,12 @@
                       <p>Zmień obraz:</p>
                       <input type="file" formControlName="image" class="form-control-file" (change)="onSelectEditEventFile($event)"
                         accept="image/jpeg" [ngStyle]="{'height': '38px'}">
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <p>Krótki opis:</p>
+                      <textarea formControlName="description" class="form-control" placeholder="(wymagane - od 3 do 600 znaków)"
+                        rows="5" [ngStyle]="{'height': '320px'}"></textarea>
+                      <br>
                     </div>
                   </div>
                 </form>

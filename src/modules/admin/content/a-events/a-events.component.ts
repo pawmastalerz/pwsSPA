@@ -295,7 +295,7 @@ export class AEventsComponent implements OnInit {
     this.eventService.deleteEvent(Number(this.selectedEvent.eventId)).subscribe(
       (res: any) => {
         if (+res.status === 200) {
-          this.alertifyService.error('Usunięto wydarzenie');
+          this.alertifyService.success('Usunięto wydarzenie');
         } else {
           this.alertifyService.error('Błąd przy usuwaniu wydarzenia');
         }

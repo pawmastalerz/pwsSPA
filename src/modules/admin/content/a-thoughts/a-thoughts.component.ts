@@ -263,7 +263,7 @@ export class AThoughtsComponent implements OnInit {
       .subscribe(
         (res: any) => {
           if (+res.status === 200) {
-            this.alertifyService.error('Usunięto myśl');
+            this.alertifyService.success('Usunięto myśl');
           } else {
             this.alertifyService.error('Błąd przy usuwaniu myśli');
           }
