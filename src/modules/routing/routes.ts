@@ -42,7 +42,7 @@ export const appRoutes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: 'glowna',
         pathMatch: 'full'
       }
     ]

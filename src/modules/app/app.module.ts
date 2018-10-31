@@ -20,6 +20,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from '../routing/app-routing.module';
 import { TokenInterceptor } from 'src/interceptors/token.interceptor';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TokenInterceptor } from 'src/interceptors/token.interceptor';
     VisitorsComponent,
     SkirtchatComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule,
