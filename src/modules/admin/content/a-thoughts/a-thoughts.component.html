@@ -59,7 +59,7 @@
               </div>
               <div class="col-12">
                 <div class="text-center">
-                  <img [src]="previewCreateThoughtUrl" class="my-2 my-sm-3 prev">
+                  <img [src]="previewCreateThoughtUrl" class="my-2 my-sm-3 img-fluid">
                 </div>
                 <div class="col-12">
                   <button type="submit" class="btn btn-success mt-2 mt-sm-3 pull-right" (click)="onThoughtCreateSubmit()"
@@ -121,7 +121,7 @@
             </div>
             <div class="col-12">
               <div class="text-center">
-                <img [src]="previewEditThoughtUrl" class="my-2 my-sm-3 prev">
+                <img [src]="previewEditThoughtUrl" class="my-2 my-sm-3 img-fluid">
               </div>
               <button type="button" class="btn btn-success mx-2 pull-right" (click)="closeThoughtDetails(); onThoughtEditSubmit()"
                 [disabled]="editThoughtForm.invalid || editThoughtForm.pristine">Aktualizuj</button>
