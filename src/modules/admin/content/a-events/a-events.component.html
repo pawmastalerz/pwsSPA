@@ -101,13 +101,13 @@
                   <div class="row">
                     <div class="col-12 col-sm-6">
                       <p>Nazwa:</p>
-                        <input type="text" formControlName="eventName" placeholder="(od 3 do 150 znaków)" class="form-control">
-                        <br>
-                        <p>Data:</p>
-                        <input type="date" formControlName="happensAt" class="form-control" value="{{selectedEvent.happensAt | date : 'yyyy-MM-dd'}}">
-                        <br>
-                        <p>Link do zapisów:</p>
-                        <input type="text" formControlName="signUpLink" class="form-control" placeholder="(wymagane - URL)">
+                      <input type="text" formControlName="eventName" placeholder="(od 3 do 150 znaków)" class="form-control">
+                      <br>
+                      <p>Data:</p>
+                      <input type="date" formControlName="happensAt" class="form-control" value="{{selectedEvent.happensAt | date : 'yyyy-MM-dd'}}">
+                      <br>
+                      <p>Link do zapisów:</p>
+                      <input type="text" formControlName="signUpLink" class="form-control" placeholder="(wymagane - URL)">
                     </div>
                     <div class="col-12 col-sm-6">
                       <p>Akceptacja:</p>
@@ -135,6 +135,19 @@
               </div>
             </div>
           </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </nb-tab>
+
+  <nb-tab tabTitle="Podgląd">
+    <div class="mt-3">
+      <nb-card *ngIf="showEventsOnSite">
+        <nb-card-header>
+          Wydarzenia na stronie:
+        </nb-card-header>
+        <nb-card-body>
+          <app-shared-news-posters></app-shared-news-posters>
         </nb-card-body>
       </nb-card>
     </div>
