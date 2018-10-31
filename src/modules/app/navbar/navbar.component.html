@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white" *ngIf="!isAuth">
+<nav class="navbar navbar-expand-md navbar-light bg-white sticky-top mt-0" *ngIf="!isAuth">
   <img src="{{nav}}" class="navbar-toggler mx-auto" (click)="isCollapsed = !isCollapsed">
   <div class="collapse navbar-collapse" [ngClass]="isCollapsed ? 'd-block' : 'd-none'">
     <ul class="navbar-nav mx-auto text-center">
