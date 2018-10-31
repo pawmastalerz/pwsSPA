@@ -1,31 +1,12 @@
-<div class="container">
+<div class="container px-0">
   <div class="row">
-    <div class="col-md-4 mt-2 mt-md-3 mt-lg-5 poster-left">
+    <div class="col-md-4 mt-2 mt-md-3 mt-lg-5 d-flex" *ngFor="let event of events">
       <div class="card">
-        <a target="_blank" rel="noopener noreferrer" href="{{events[0].signUpLink}}">
-          <img class="card-img-top" src="{{rootUrl}}{{events[0].posterPhotoUrl}}">
+        <img class="card-img-top" src="{{rootUrl}}{{events[0].posterPhotoUrl}}">
+        <a target="_blank" rel="noopener noreferrer" href="{{events[0].signUpLink}}" class="btn btn-primary my-2 my-md-3 w-100">
+          zapisz się!
         </a>
       </div>
-      <a target="_blank" rel="noopener noreferrer" href="{{events[0].signUpLink}}" class="btn btn-primary my-2 my-md-3 w-100">zapisz
-        się!</a>
-    </div>
-    <div class="col-md-4 mt-2 mt-md-3 mt-lg-5 poster-center">
-      <div class="card">
-        <a target="_blank" rel="noopener noreferrer" href="{{events[1].signUpLink}}">
-          <img class="card-img-top" src="{{rootUrl}}{{events[1].posterPhotoUrl}}">
-        </a>
-      </div>
-      <a target="_blank" rel="noopener noreferrer" href="{{events[1].signUpLink}}" class="btn btn-primary my-2 my-md-3 w-100">zapisz
-        się!</a>
-    </div>
-    <div class="col-md-4 mt-2 mt-md-3 mt-lg-5 poster-right">
-      <div class="card">
-        <a target="_blank" rel="noopener noreferrer" href="{{events[2].signUpLink}}">
-          <img class="card-img-top" src="{{rootUrl}}{{events[2].posterPhotoUrl}}">
-        </a>
-      </div>
-      <a target="_blank" rel="noopener noreferrer" href="{{events[2].signUpLink}}" class="btn btn-primary my-2 my-md-3 w-100">zapisz
-        się!</a>
     </div>
   </div>
 </div>
